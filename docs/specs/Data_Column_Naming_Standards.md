@@ -74,3 +74,64 @@ Hole-level examples:
 # 3. Rules for Long-Form Hole Arrays
 
 ### **3.1 Format**
+Where `XX` = padded hole number (01–18)
+
+### **3.2 Allowed Metrics**
+- `Score_XX`
+- `Par_XX`
+- `Hcp_XX`
+- `NetScore_XX`
+- `Bird_XX`
+- `Eagle_XX`
+- `DoubleEagle_XX`
+- `Points_XX`
+
+### **3.3 Padding is mandatory**
+Use two digits for hole numbers.
+
+---
+
+# 4. Staging-Level Naming Rules
+
+The staging layer standardizes all derived scoring fields:
+
+- `BirdiesTotal`
+- `EaglesTotal`
+- `DoubleEaglesTotal`
+- `NetPoints`
+- `PointsTotal`
+
+All fields adopt **PascalCase** and **no underscores**.
+
+---
+
+# 5. Analytics-Level Naming Rules
+
+The hole-expansion layer uses a fixed schema:
+
+| Column        | Meaning                          |
+|---------------|----------------------------------|
+| `Hole`        | Hole number (1–18)               |
+| `Par`         | Par for the hole                 |
+| `Hcp`         | Handicap rating for the hole     |
+| `Score`       | Gross strokes                    |
+| `NetScore`    | Net score (Score - Hdcp contrib) |
+| `Bird`        | Boolean birdie flag              |
+| `Eagle`       | Boolean eagle flag               |
+| `DoubleEagle` | Boolean double-eagle flag        |
+| `Points`      | Points for the hole              |
+
+---
+
+# 6. Match Report Alignment
+
+Match Report output tables MUST:
+
+- use these exact field names  
+- output Score_XX, Par_XX, Hcp_XX using the padded scheme  
+- ensure column order is irrelevant  
+- supply all required columns even if blank  
+
+---
+
+This standard is authoritative for all REFIT development and should be updated only through versioned changes.
