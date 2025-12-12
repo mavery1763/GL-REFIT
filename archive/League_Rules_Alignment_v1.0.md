@@ -1213,3 +1213,243 @@ There are no unresolved dependencies.
 
 ----------
 
+Section 5 – Blind Draw Player Modeling & Settings Integration — Final (Agreed Alignment)
+
+This section defines how Blind Draw matches are modeled, displayed, calculated, and ingested in REFIT, ensuring:
+
+Full compliance with league rules
+
+Continuity with captain expectations and workflows
+
+Clean separation between presentation, settings, and calculation logic
+
+Zero ambiguity during debugging or future maintenance
+
+This section supersedes all prior drafts for Section 5.
+
+5.1 Blind Draw Scenarios (Authoritative Definitions)
+
+REFIT recognizes two distinct Blind Draw scenarios, which are not interchangeable and must be modeled explicitly:
+
+A. BlindDrawTeam (Scheduled Blind Draw Match)
+
+Occurs when:
+
+The league has an odd number of teams
+
+One team is scheduled to play a Blind Draw team instead of a live opponent
+
+Characteristics:
+
+Not a forfeit
+
+Treated as a legitimate scheduled match
+
+Blind Draw players simulate a team of four players
+
+Points are earned normally by the live team
+
+Blind Draw team does not accumulate standings points
+
+B. BlindDrawForfeit (Forfeit Replacement)
+
+Occurs when:
+
+A player (or entire opposing team) does not show up for a scheduled match
+
+Characteristics:
+
+Represents a forfeit condition
+
+Blind Draw players act as the opponent for scoring purposes
+
+Non-forfeiting team may earn points
+
+Forfeiting side earns zero points
+
+These two scenarios are explicitly identified and never inferred.
+
+5.2 Blind Draw Player Representation
+REFIT Decision
+
+REFIT will not create actual player rows for Blind Draw players in Upload_Ind.
+
+Instead:
+
+Blind Draw logic is applied within scoring calculations
+
+Blind Draw behavior is deterministic and reproducible
+
+No Blind Draw players appear in player history, handicap tracking, or analytics
+
+Rationale
+
+Blind Draw players are not real golfers
+
+Their “performance” is rule-defined, not earned
+
+Historical tracking of Blind Draw players provides no analytical value
+
+Forfeit impact analysis is better derived at the team/match level, not via synthetic players
+
+This replaces the legacy approach of rostered “Blind Draw [TeamName]” players.
+
+5.3 Blind Draw Type Identification
+
+REFIT uses explicit identifiers, not derived inference.
+
+Authoritative Identifiers
+
+BlindDrawForfeit
+
+BlindDrawTeam
+
+These identifiers:
+
+Are used internally by REFIT logic
+
+Determine which Blind Draw profile applies
+
+Control scoring behavior and exclusions
+
+No additional BlindDrawType flag is required.
+
+5.4 Blind Draw Profiles in Settings (Locked Design)
+
+Blind Draw behavior is defined entirely in Settings, not hard-coded.
+
+Settings Profiles (Final Names)
+
+BlindDrawForfeit
+
+BlindDrawTeam
+
+Profile Contents
+
+Each profile contains only one array:
+
+Score_01 … Score_18
+
+Explicit Exclusions
+
+The following do NOT belong in Blind Draw profiles:
+
+Par_XX → inherited from course
+
+Hcp_XX → inherited from course
+
+NetScore_XX → computed (Blind Draw handicap = 0)
+
+Points_XX → computed dynamically per opponent
+
+Rationale
+
+Blind Draw par and handicap holes are identical to live players
+
+Blind Draw net score equals gross score
+
+Points depend on opponent’s score and must be calculated at runtime
+
+Keeping profiles minimal prevents silent misalignment and debugging errors
+
+5.5 Blind Draw Hole Score Visibility (Captain Experience)
+
+Blind Draw hole scores must be visible in the Match Report.
+
+Behavior
+
+Blind Draw hole scores populate automatically
+
+Captains do not enter Blind Draw scores
+
+Blind Draw rows appear visually identical to live opponents
+
+Why This Is Required
+
+Captains must verify scoring against scorecards
+
+Blind Draw matches must feel operationally identical to live matches
+
+Debugging discrepancies requires full hole-by-hole visibility
+
+This matches current league behavior and expectations
+
+5.6 Match Report Responsibilities (Blind Draw)
+
+The Match Report:
+
+Displays Blind Draw hole scores
+
+Displays computed gross, net, and points
+
+Allows captains to validate results visually
+
+Does not contain Blind Draw logic formulas beyond lookup/display
+
+All Blind Draw logic is:
+
+Defined in Settings
+
+Executed by REFIT calculations
+
+Never manually overridden by captains
+
+5.7 Scoring Consistency Across Match Types
+
+From the captain’s perspective:
+
+Live vs Live matches
+
+Live vs BlindDrawTeam matches
+
+Live vs BlindDrawForfeit matches
+
+…must all:
+
+Look the same
+
+Behave the same
+
+Be reviewed the same way
+
+REFIT guarantees:
+
+No special workflows
+
+No conditional captain behavior
+
+No hidden score handling
+
+5.8 Exclusions & Analytics Impact
+
+Blind Draw matches:
+
+Do not contribute to player handicap history
+
+Do not create player-level statistical records
+
+Do contribute to team points and standings where applicable
+
+Forfeit effects can be analyzed via:
+
+Match flags
+
+Team-level summaries
+
+Derived metrics (e.g., “points gained via forfeits”)
+
+No Blind Draw player stats are retained.
+
+5.9 Final Summary (Section 5)
+
+✔ Two explicit Blind Draw scenarios
+✔ Explicit identifiers (BlindDrawForfeit, BlindDrawTeam)
+✔ Blind Draw scoring driven by Settings
+✔ Hole-by-hole visibility preserved for captains
+✔ No synthetic player records
+✔ No ambiguity, inference, or silent logic
+
+This section is final, aligned, and implementation-ready.
+
+-----------
+
