@@ -378,6 +378,8 @@ There are no contradictions between REFIT and 2025 league rules.
 
 After implementing the items marked Must Implement, REFIT will be fully rule-compliant.
 
+------------
+
 Section 1 — Blind Draw, Maximum Scores, and Hole Completion
 
 FINAL (Agreed Alignment)
@@ -653,3 +655,206 @@ Team vs Blind Draw no-show
 Both teams failing to appear
 
 Scoring and exclusion handled via flags, not inference
+
+------------
+
+Section 2 – Handicaps & Handicap Establishment
+
+Final (Agreed Alignment)
+
+2.1 Handicap Strokes Applied at the Hole Level
+League Rule Reference
+
+League rules specify that:
+
+Handicap strokes in a match are determined by:
+
+Calculating the difference between the two players’ handicaps, rounded to the nearest whole number
+
+Assigning that many strokes to the higher-handicap player only
+
+Applying strokes on holes in order from hardest to easiest
+
+The lower-handicap player receives zero strokes
+
+REFIT Alignment
+
+REFIT must replicate the league rule behavior exactly, not approximate it.
+
+Accordingly:
+
+Hole-level handicap strokes are determined by:
+
+Computing the handicap difference between opponents, rounded per league rules
+
+Assigning strokes only to the higher-handicap player
+
+Applying strokes in hole handicap order (hardest → easiest)
+
+REFIT will not independently apply each player’s full handicap at the hole level
+
+Rationale
+
+Applying full handicaps independently to each player can produce off-by-one stroke errors relative to league rules
+
+REFIT’s goal is rules fidelity, not computational convenience
+
+Any internal representation (arrays, flags, computed columns) must yield identical hole outcomes to the league method
+
+Resolution:
+REFIT hole scoring logic shall be explicitly difference-based, matching league rules, and not derived from independent per-player handicap allocation.
+
+2.2 Handicap Rounding
+
+Agreed
+
+Handicaps are calculated and stored to two decimal places
+
+Rounding to a whole number occurs only when determining:
+
+Net scores
+
+Handicap stroke allocation for a match
+
+REFIT shall use the same rounding thresholds defined in league rules
+
+2.3 Established vs. Unestablished Handicap Status
+Definition (Agreed)
+
+A player is considered unestablished if:
+
+A valid handicap cannot be calculated prior to the start of the match
+
+This status is determined by the Master (Summary), not the Match Report
+
+REFIT Responsibilities
+
+The Master:
+
+Determines whether a player is established or unestablished
+
+Provides either:
+
+The established handicap value, or
+
+The parameters required to compute the handicap after the round
+
+The Match Report:
+
+Calculates the handicap used for that match only when the player is unestablished
+
+Uses:
+
+Prior qualifying score(s) supplied by Master
+
+The gross score entered for the current match
+
+Outputs the calculated handicap used for scoring
+
+Validation Rule
+
+If a player is marked established:
+
+REFIT validates that the handicap reported by Match Report matches Summary
+
+A mismatch triggers a warning or error, not an override
+
+If a player is unestablished:
+
+REFIT trusts the handicap value produced by Match Report
+
+2.4 Match-Used Handicap Calculation
+
+Agreed
+
+For unestablished players:
+
+Match Report computes the handicap used for that match
+
+The captain does not manually calculate or enter the handicap
+
+REFIT ensures the calculation logic is deterministic and rule-compliant
+
+2.5 Handicap Carryforward Between Seasons
+
+Agreed
+
+Each season begins with up to the 10 most recent qualifying scores from the prior season
+
+These scores:
+
+Count toward establishing a handicap early in the season
+
+Are tracked distinctly from “season rounds played”
+
+REFIT Master:
+
+Maintains both:
+
+Handicap rounds available
+
+Current-season rounds played
+
+2.6 Handicap Recalculation Timing
+
+Agreed
+
+REFIT Master:
+
+Recalculates handicaps after results are finalized for a week
+
+Applies the updated handicap to the next scheduled match
+
+Match Reports:
+
+Never retroactively alter handicaps
+
+Only report the handicap used for the match being recorded
+
+2.7 Handicap Error Handling
+
+Agreed
+
+REFIT shall not auto-correct handicap discrepancies
+
+Any mismatch:
+
+Generates a warning or error
+
+Requires correction at the Match Report level, not directly in Master data
+
+This preserves the league’s existing correction workflow
+
+2.8 Post-Facto Corrections
+
+Agreed
+
+Any correction to scoring or handicaps:
+
+Is made in the original Match Report
+
+Not directly in the Master workbook
+
+REFIT will:
+
+Re-ingest corrected Match Reports
+
+Recompute downstream results accordingly
+
+This behavior mirrors the current league process and preserves auditability.
+
+Section 2 Summary
+
+REFIT’s handicap system:
+
+Matches league rules exactly
+
+Distinguishes clearly between:
+
+Established vs. unestablished players
+
+Match-used handicap vs. future handicap calculation
+
+Enforces validation without silent correction
+
+Preserves historical workflow and correction practices
