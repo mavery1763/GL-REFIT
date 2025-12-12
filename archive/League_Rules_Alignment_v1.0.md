@@ -1042,3 +1042,174 @@ Status: ✅ Agreed
 
 -------------
 
+Section 4 — Team Scoring, Team Net & Forfeits
+Final (Agreed Alignment)
+4.1 Definition of MatchCompleted (Team vs Individual)
+
+Clarification (Authoritative):
+
+MatchCompleted is an individual-match flag, not a team-level flag.
+
+Each of the four individual matches within a team match has its own MatchCompleted value.
+
+A team match may therefore contain a mix of:
+
+completed individual matches
+
+uncompleted individual matches (weather, late arrival, early termination, etc.)
+
+There is no separate TeamMatchCompleted flag in REFIT.
+
+4.2 Calculation of Team Net Score
+
+Agreed Rule:
+
+Team Net is calculated as the sum of Net scores from completed individual matches only.
+
+Individual matches where MatchCompleted = FALSE are excluded from Team Net calculation.
+
+Examples:
+
+4 completed individual matches → Team Net = sum of all 4
+
+3 completed individual matches → Team Net = sum of those 3
+
+0 completed individual matches → Team Net is not calculable
+
+4.3 Representation of Team Net When Not Fully Available
+
+Agreed Decisions:
+
+If no individual matches are completed:
+
+TeamNet shall be NULL, not zero.
+
+If one or more individual matches are completed:
+
+TeamNet reflects the sum of those completed matches only.
+
+Rationale:
+
+Zero is a valid golf score and would corrupt comparisons.
+
+NULL explicitly signals “not applicable / not computable.”
+
+4.4 Team Net Points (4 Points for Low Net)
+
+Agreed Rules:
+
+Team Net Points are awarded only when Team Net is computable for both teams.
+
+If both teams have a valid Team Net:
+
+Lower Team Net earns 4 points
+
+Tie splits points (2 / 2)
+
+If one team has a computable Team Net and the other does not:
+
+Team with computable Team Net earns all 4 points
+
+If neither team has a computable Team Net:
+
+Team Net points are split (2 / 2)
+
+4.5 Team Forfeits
+4.5.1 Individual-Level Forfeits
+
+Handled entirely at the individual match level using:
+
+ForfeitFlag = TRUE
+
+Blind Draw logic per Section 1
+
+Team Net calculation follows normal rules based on completed matches.
+
+4.5.2 Full-Team Forfeit (Rare Case)
+
+Agreed Handling:
+
+If an entire team does not show up:
+
+The opposing team plays the round
+
+The opposing team scores as if playing against 4 Blind Draw – Forfeit players
+
+Blind Draw – Forfeit definition:
+
+Gross = 40
+
+Handicap = 0
+
+The no-show team:
+
+Receives 0 total points
+
+Has TeamNet = NULL
+
+Has ForfeitFlag = TRUE on all four individual matches
+
+Important:
+
+No additional TeamForfeitType field is required.
+
+Full-team forfeits are derived as:
+
+count(ForfeitFlag = TRUE) = 4
+
+4.6 Use of Team Net in Leaderboards & Analytics
+
+Agreed Constraint:
+
+Team Net values derived from fewer than 4 completed matches:
+
+ARE valid for awarding Team Net Points
+
+ARE NOT valid for:
+
+Weekly low team net leaderboards
+
+Season-to-date team net rankings
+
+Any analytics that assume full team participation
+
+These exclusions are enforced downstream using:
+
+MatchCompleted
+
+Count of completed individual matches
+
+ExclScore logic
+
+4.7 Data Model Implications
+
+Upload_Team.TeamNet may be:
+
+A numeric value
+
+NULL
+
+NULL Team Net values must be preserved through:
+
+Raw
+
+Staging
+
+Analytics
+
+No zero-substitution is allowed at any stage.
+
+4.8 Alignment with Prior Sections
+
+This section is fully aligned with:
+
+Section 1: Blind Draw profiles, forfeits, and ExclScore semantics
+
+Section 2: Handicap integrity and exclusion rules
+
+Section 3: Points allocation and exclusion logic
+
+There are no unresolved dependencies.
+
+----------
+
