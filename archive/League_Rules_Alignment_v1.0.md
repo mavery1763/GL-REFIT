@@ -858,3 +858,187 @@ Match-used handicap vs. future handicap calculation
 Enforces validation without silent correction
 
 Preserves historical workflow and correction practices
+
+--------------
+
+Section 3 – Scoring, Points Allocation & Exclusions
+Final (Agreed Alignment)
+
+This section defines how individual hole scoring, points allocation, forfeits, and exclusions are represented and handled within REFIT, ensuring strict alignment with league rules and previously agreed design decisions.
+
+3.1 Hole Completion vs. Pick-Up (Authoritative)
+
+Final Decision (Corrected):
+REFIT will use HoleCompleted_XX (TRUE/FALSE) as the authoritative hole-level indicator.
+
+HoleCompleted_XX = TRUE
+→ Player holed out and completed the hole.
+
+HoleCompleted_XX = FALSE
+→ Player did not hole out (picked up, conceded, or otherwise did not complete the hole).
+
+This field applies to all players, including Blind Draw players.
+
+Rationale:
+
+This directly supports the league rule distinction between:
+
+Both players reaching max strokes and holing out (hole halved), versus
+
+One player holing out and the other picking up (hole won).
+
+HoleCompleted_XX is semantically correct, symmetric, and future-proof.
+
+This aligns with Section 1 (1.1) and supersedes any use of PickedUp_XX.
+
+Status: ✅ Agreed and locked
+
+3.2 Maximum Strokes per Hole
+
+Maximum strokes per hole = Par + 5, per league rules.
+
+When a player reaches the maximum:
+
+If they hole out, HoleCompleted_XX = TRUE
+
+If they pick up, HoleCompleted_XX = FALSE
+
+Scoring logic will evaluate both stroke count and hole completion.
+
+Status: ✅ Agreed
+
+3.3 Hole-Level Points Allocation
+
+Per league rules:
+
+Hole win → 2 points
+
+Hole halved → 1 point each
+
+Hole lost → 0 points
+
+REFIT determines hole outcome using:
+
+Gross strokes
+
+Net strokes
+
+HoleCompleted_XX
+
+Handicap strokes applied to the hole
+
+Status: ✅ Agreed
+
+3.4 Individual Match Points (Low Net)
+
+Each match awards 2 additional points for low net.
+
+Determined based only on played holes.
+
+If a match is shortened:
+
+Low net points are awarded based on completed holes.
+
+If tied, low net points are split.
+
+Status: ✅ Agreed
+
+3.5 Team Net Points
+
+Team net = sum of eligible individual net scores.
+
+4 points awarded for lower team net.
+
+If team nets are tied, points are split.
+
+Eligibility of an individual score is controlled by ExclScore, not inferred logic.
+
+Status: ✅ Agreed
+
+3.6 Partial Matches & Weather-Shortened Play
+
+When matches are shortened due to weather or darkness:
+
+Hole points already played are awarded normally.
+
+Unplayed holes’ points are split.
+
+Team net points:
+
+Based on completed matches if any exist.
+
+Split if no matches were completed.
+
+Scores from such matches are excluded from future handicap calculations using ExclScore.
+
+Status: ✅ Agreed
+
+3.7 Forfeits & Blind Draw Handling (Clarified)
+Individual Forfeit
+
+A no-show golfer forfeits the match.
+
+Opponent plays against a Blind Draw – Forfeit player:
+
+Score = 40
+
+Handicap = 0
+
+Opponent earns points normally.
+
+Forfeiting golfer earns 0 points.
+
+Entire Team No-Show (Rare Case – Clarified)
+
+Team that shows up plays the round.
+
+They score as if playing against four Blind Draw – Forfeit players.
+
+Showing team earns all points legitimately won.
+
+No-show team receives 0 total points, regardless of Blind Draw scoring.
+
+This condition is captured via:
+
+ForfeitFlag = TRUE
+
+Team-level context (not inferred from individual rows)
+
+Status: ✅ Agreed and clarified
+
+3.8 ExclScore Usage (Authoritative)
+
+ExclScore is the sole mechanism used to determine whether an individual score:
+
+Contributes to future handicap calculations
+
+Contributes to team net
+
+Examples include:
+
+Weather-shortened matches
+
+Matches with unplayed holes
+
+Forfeits
+
+Late arrivals affecting hole eligibility
+
+No exclusions are inferred implicitly.
+
+Status: ✅ Agreed
+
+3.9 Post-Facto Corrections
+
+If an error is discovered after submission:
+
+Corrections are made in the Match Report, not directly in the Master.
+
+REFIT then re-ingests corrected data through the standard pipeline.
+
+This mirrors historical league practice and preserves auditability.
+
+Status: ✅ Agreed
+
+-------------
+
