@@ -377,3 +377,279 @@ All required adjustments involve business logic formulas and input metadata, not
 There are no contradictions between REFIT and 2025 league rules.
 
 After implementing the items marked Must Implement, REFIT will be fully rule-compliant.
+
+Section 1 — Blind Draw, Maximum Scores, and Hole Completion
+
+FINAL (Agreed Alignment)
+
+This section documents how REFIT implements league rules related to maximum hole scores, Blind Draw behavior, forfeits, and hole completion, with explicit alignment to current league practice and automation requirements.
+
+1.1 Maximum Scores, Picking Up, and Hole Completion
+Rule Reference
+
+League rules specify a maximum of 5 over par per hole.
+Special handling applies when a player picks up after reaching the maximum versus holing out at the maximum.
+
+Current league interpretation:
+
+If both players hole out at the maximum → hole is tied (1 point each)
+
+If one player holes out at the maximum and the other picks up → the player who holed out wins the hole (2 points)
+
+The legacy system cannot distinguish these cases, creating ambiguity.
+
+REFIT Implementation (Final)
+
+REFIT will explicitly distinguish hole completion status.
+
+Match Report Output (Hole-Level)
+
+Add a hole-level Boolean field:
+
+HoleCompleted_01 … HoleCompleted_18   (TRUE / FALSE)
+
+
+Meaning:
+
+TRUE → Player holed out on that hole
+
+FALSE → Player picked up (did not hole out)
+
+This field applies only to holes where a maximum score is reached; it may be left TRUE by default otherwise.
+
+Scoring Logic
+
+If both players have HoleCompleted = FALSE → hole is tied
+
+If one TRUE and one FALSE → TRUE wins hole
+
+If both TRUE → compare scores normally (tie or win)
+
+This preserves league intent while removing ambiguity.
+
+Impact Summary
+
+Eliminates long-standing scoring ambiguity
+
+Requires no captain judgment
+
+Preserves current results where data is unambiguous
+
+Enables correct automation without retroactive correction
+
+1.2 Blind Draw Definitions and Profiles
+Rule Reference
+
+Blind Draw players are defined as:
+
+Forfeit situations: 0-handicap player shooting 40
+
+Scheduled Blind Draw matches: 0-handicap player shooting 38
+
+Bogeys are assigned on the hardest holes; pars elsewhere.
+
+REFIT Implementation (Final)
+
+Blind Draw behavior will be centralized in Master Settings, not in weekly Match Reports.
+
+Settings Profiles
+
+Two explicit Blind Draw profiles will exist:
+
+BlindDraw_Team
+
+BlindDraw_Forfeit
+
+Each profile contains only one array:
+
+Score_01 … Score_18
+
+
+Notes:
+
+Par and Hcp values are inherited from course Settings
+
+NetScore = Score (0 handicap)
+
+Points are not stored in Settings (they depend on opponent results)
+
+Match Report Behavior
+
+When a Blind Draw player is required, the Match Report:
+
+Pulls the appropriate Score_XX array from Settings
+
+Automatically populates hole scores, pars, and handicaps
+
+Prevents manual editing by captains
+
+Impact Summary
+
+Blind Draw logic is season-controlled, not week-controlled
+
+Prevents scoring drift or captain error
+
+Fully compatible with future rule changes
+
+1.3 Handicap Establishment and Validation
+Rule Reference
+
+Each season begins with up to the last 10 scores from the prior season
+
+Handicaps are based on lowest N of last 10, per league table
+
+Players without sufficient history establish handicaps using current-round scores
+
+REFIT Implementation (Final)
+Master File (Summary)
+
+Determines whether a player has an established handicap
+
+Provides:
+
+EstablishedHcp (numeric, when established)
+
+Or parameters for in-round calculation (e.g., “low of XX and score”)
+
+Match Report
+
+Uses Summary-provided data:
+
+If EstablishedHcp exists → must be used
+
+If not established → Match Report calculates handicap using the round just played
+
+Validation
+
+If a Match Report returns a handicap that differs from EstablishedHcp by > 0.01, REFIT raises a warning
+
+REFIT does not override reported values automatically
+
+Impact Summary
+
+Preserves current workflow
+
+Prevents silent corruption
+
+Respects rounding rules in league regulations
+
+1.4 Excluded Scores and Handicap Integrity
+Rule Reference
+
+Scores from matches where holes are not competitively played must not affect future handicaps.
+
+Examples:
+
+Opponent arrives late
+
+Holes unplayed due to darkness
+
+Any hole where points cannot be won or lost
+
+REFIT Implementation (Final)
+
+ExclScore will be set for both players in any match where:
+
+Any hole is unplayed by either golfer
+
+Hole outcomes are not fully competitive
+
+Master handicap calculations will exclude these rounds automatically.
+
+1.5 Inclement Weather and Partial Matches
+Rule Reference
+
+League rules distinguish:
+
+Established vs unestablished handicaps
+
+Partial completion vs full abandonment
+
+REFIT Implementation (Final)
+
+Match Report determines:
+
+Holes completed
+
+Handicap status of each player
+
+ExclScore and MatchCompleted flags encode the outcome
+
+REFIT applies rules exactly as written without inference
+
+1.6 Late Arrival Rules
+Rule Reference
+
+Late arrival with established handicap → partial scoring
+
+Late arrival without established handicap → forfeit
+
+REFIT Implementation (Final)
+
+Late arrival scenarios are resolved in the Match Report
+
+REFIT consumes results as reported
+
+Handicap impact controlled solely by ExclScore
+
+1.7 Tee Selection Rules
+Rule Reference
+
+Tee selection is fixed for the season
+
+Rare exceptions may occur (e.g., medical hardship)
+
+REFIT Implementation (Final)
+
+Player roster includes:
+
+Tee ∈ {Normal, Forward}
+
+Changes:
+
+Require explicit override
+
+May reset handicap history when applicable
+
+Optional future enhancement:
+
+Player DOB (only with player consent)
+
+1.8 Playoffs
+Scope Decision
+
+Playoffs are out of scope for REFIT v1.
+
+REFIT Position
+
+REFIT supports exporting final regular-season Summary data
+
+Existing Playoff workbook may continue to be used
+
+Design does not block future playoff automation
+
+1.9 Eligibility Enforcement
+
+Eligibility rules remain administrative, not system-enforced.
+
+REFIT records results only.
+
+1.10 Matches Not Played
+Rule Reference
+
+Teams failing to appear receive zero points.
+
+REFIT Implementation (Final)
+
+Match Report includes:
+
+MatchNotPlayed (TRUE / FALSE)
+
+
+Covers:
+
+Team vs Blind Draw no-show
+
+Both teams failing to appear
+
+Scoring and exclusion handled via flags, not inference
