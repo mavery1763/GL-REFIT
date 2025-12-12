@@ -1453,3 +1453,255 @@ This section is final, aligned, and implementation-ready.
 
 -----------
 
+Section 6 – Match Completion, Late Arrival, Weather & Officer Overrides
+
+Final (Agreed Alignment)
+
+6.1 MatchCompleted Flags (Individual vs Team)
+
+Final Alignment
+
+REFIT distinguishes between:
+
+individual match completion
+
+team match completion
+
+These concepts must not be inferred from one another.
+
+Implementation Decision
+
+Two explicit logical flags will exist:
+
+MatchCompletedInd — applies to an individual player match
+
+MatchCompletedTeam — applies to the overall team match
+
+This avoids ambiguity and prevents incorrect downstream assumptions.
+
+Rationale
+
+A team match may be partially completed (e.g., 3 of 4 individual matches finished).
+
+Individual matches may be incomplete for different reasons (weather, late arrival, forfeit).
+
+Clear separation is essential for:
+
+Team Net calculations
+
+ExclScore determination
+
+Handicap exclusion logic
+
+6.2 Inclement Weather & Darkness (General)
+
+Final Alignment
+
+When play ends due to weather or darkness:
+
+Matches are not forfeits
+
+Completion status depends on holes actually played
+
+REFIT must rely on explicit flags, not inference.
+
+Implementation Notes
+
+Individual matches may be:
+
+completed
+
+partially completed
+
+not started
+
+Points allocation follows league rules (split points, partial nets, etc.).
+
+Handicap impact is controlled via ExclScore, not completion flags alone.
+
+6.3 Late Arrival by a Player (Established vs Unestablished Handicap)
+6.3.1 Late Arrival — Player WITH an Established Handicap
+
+League Rule Interpretation
+
+Player may join the match on the next hole.
+
+For holes not played:
+
+Player receives 0 points
+
+Match is not a forfeit.
+
+Individual Net points (2 points) are based on holes actually played.
+
+REFIT Alignment
+
+MatchCompletedInd = FALSE
+
+ForfeitFlag = FALSE
+
+Holes not played:
+
+Score fields remain blank
+
+Points for those holes explicitly set to 0
+
+ExclScore must be set to indicate partial match / late arrival
+
+Match is excluded from handicap calculations because not all holes were contested.
+
+6.3.2 Late Arrival — Player WITHOUT an Established Handicap
+
+League Rule Interpretation
+
+Player must forfeit the match
+
+Reason:
+
+Handicap for the match cannot be calculated without a full round
+
+REFIT Alignment
+
+ForfeitFlag = TRUE
+
+MatchCompletedInd = FALSE
+
+Opponent scores against:
+
+BlindDrawForfeit profile
+
+Player’s score:
+
+Not eligible for handicap establishment
+
+ExclScore reflects forfeit / unestablished late arrival
+
+Key Principle
+
+REFIT must enforce this rule — it is not discretionary.
+
+6.4 Match Termination for Reasons Other Than Weather
+
+Final Alignment
+
+Applies when a player quits or leaves early for non-weather reasons.
+
+Officers determine point allocation.
+
+REFIT Handling
+
+Match Report supports manual override by the Secretary:
+
+Adjust flags
+
+Adjust points
+
+Set appropriate ExclScore
+
+REFIT does not automate officer judgment, but fully supports it.
+
+6.5 Matches with No Completed Holes
+
+Final Alignment
+
+If no holes are completed:
+
+Individual Net points are split
+
+Team Net points are split
+
+No forfeits unless explicitly declared.
+
+REFIT Handling
+
+All hole-level scores blank
+
+Completion flags FALSE
+
+ExclScore set to weather/darkness condition
+
+Match excluded from handicap calculations
+
+6.6 Team Net with Partial Matches
+
+Final Alignment
+
+Team Net may be calculated using:
+
+Only completed individual matches
+
+Valid only for determining:
+
+Team Net points for that week
+
+REFIT Rule
+
+Such Team Net scores:
+
+must not be used in leaderboard analytics
+
+must not be used in season low-net tracking
+
+6.7 Entire Team No-Show
+
+Final Alignment
+
+Team that shows up:
+
+Plays against four BlindDrawForfeit players
+
+Earns all points possible
+
+No-show team:
+
+Receives zero points
+
+No Team Net recorded
+
+REFIT Handling
+
+MatchNotPlayed = TRUE (team-level)
+
+ForfeitFlag = TRUE for no-show team
+
+Blind Draw scoring applied to present team only
+
+6.8 Handicap Integrity
+
+Final Alignment
+
+Any match where:
+
+holes were unplayed
+
+outcomes were predetermined
+
+points were not at risk
+
+must be excluded from handicap calculations
+
+REFIT Mechanism
+
+Controlled solely via ExclScore
+
+Never inferred from scores alone
+
+6.9 Officer Overrides & Auditability
+
+Final Alignment
+
+All officer-directed adjustments must be:
+
+explicit
+
+traceable
+
+reversible
+
+REFIT Design
+
+Overrides occur via Match Report edits
+
+Master workbook consumes results as-is
+
+No silent recalculation or back-propagation
