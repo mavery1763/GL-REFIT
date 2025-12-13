@@ -1837,3 +1837,159 @@ Exceptional situations are flagged, not guessed.
 League officers retain final authority over disputed outcomes.
 
 Historical corrections are made by updating Match Reports, not the master dataset.
+
+---------
+
+Section 8 – Corrections, Overrides & Post-Submission Adjustments
+
+Final (Agreed Alignment)
+
+8.1 General Principle
+
+REFIT treats the Match Report as the authoritative source of truth for all scoring, points, handicaps, and match outcomes.
+
+All corrections to league data must be implemented by correcting the Match Report itself, not by directly editing REFIT Master tables or derived outputs.
+
+This preserves:
+
+Auditability
+
+Transparency to captains
+
+Consistency with historical league practice
+
+8.2 Reasons for Corrections
+
+Corrections may occur due to:
+
+Discovery of scoring or data entry errors
+
+Incorrect application of rules
+
+Late-reported information
+
+Decisions by league officers
+
+Administrative completion by the secretary (see 8.4)
+
+Corrections are not limited to discretionary rulings by officers.
+
+8.3 Correction Workflow (Authoritative Process)
+
+An issue is identified after a Match Report has already been submitted.
+
+The secretary updates the original Match Report file, making only the required changes.
+
+The updated Match Report is:
+
+Routed to both team captains for review and approval
+
+Clearly identified as a corrected version
+
+Once approved, the corrected Match Report is placed back into the Match Reports folder for REFIT ingestion.
+
+REFIT does not support partial overrides, patch tables, or manual edits inside the Master workbook.
+
+8.4 Identification of Corrected or Secretary-Prepared Reports
+
+REFIT must support clear identification of Match Reports that are:
+
+Corrected versions of previously submitted reports
+
+Prepared by the secretary on behalf of both captains
+
+Accepted mechanisms (one or more may be used):
+
+Filename conventions (e.g., Week05_TeamA_vs_TeamB_CORRECTED.xlsx)
+
+Internal Match Report flags (preferred for automation), such as:
+
+IsCorrection (TRUE/FALSE)
+
+PreparedBySecretary (TRUE/FALSE)
+
+Regardless of mechanism:
+
+Captains must review and approve the final version
+
+REFIT must treat the corrected file as authoritative
+
+8.5 Preservation of Historical Context
+
+REFIT does not attempt to retain prior incorrect values for analytical comparison.
+
+Once a corrected Match Report is ingested:
+
+The corrected data replaces the prior version entirely
+
+Historical statistics reflect the corrected values only
+
+Audit history is preserved externally via:
+
+File versioning
+
+GitHub documentation
+
+Archived Match Reports (if retained)
+
+8.6 Reprocessing & Cascading Recalculation
+
+When a corrected Match Report is re-submitted:
+
+REFIT must automatically reprocess:
+
+The corrected week
+
+All subsequent weeks in the season
+
+All dependent outputs must be recalculated, including:
+
+Handicaps
+
+Standings
+
+Leaderboards
+
+Season-to-date statistics
+
+REFIT must not assume earlier results remain valid once a prior week changes.
+
+8.7 Secretary Authority with Transparency
+
+REFIT supports the secretary’s authority to:
+
+Complete Match Reports when captains are unable
+
+Apply corrections after review
+
+However:
+
+All such actions must be visible and traceable
+
+No “silent” corrections are permitted
+
+Transparency to captains is a required design constraint.
+
+8.8 No Direct Master Overrides
+
+REFIT explicitly prohibits:
+
+Manual edits to Master tables
+
+Direct adjustment of staging or analytics outputs
+
+Hidden override flags or backdoor corrections
+
+All changes must originate from a Match Report file.
+
+Section 8 – Final Outcome
+
+This alignment ensures that REFIT:
+
+Mirrors long-standing league operational practice
+
+Maintains a single, auditable correction path
+
+Preserves trust between captains, secretary, and system
+
+Supports full automation without sacrificing control
