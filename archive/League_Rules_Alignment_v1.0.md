@@ -2222,3 +2222,161 @@ Transparency
 Debuggability
 
 Long-term maintainability
+
+----------
+
+Section 11 — Governance, Versioning & Change Control
+
+Final (Agreed Alignment)
+
+11.1 Authority of League Rules
+
+The League Rules document is the authoritative source for governance of play.
+
+REFIT is an implementation of the League Rules, not a replacement for them.
+
+In the event of a discrepancy, League Rules take precedence until REFIT is explicitly updated.
+
+11.2 REFIT’s Role in Governance
+
+REFIT enforces rules that are codified in configuration, calculations, and validation.
+
+REFIT does not adjudicate disputes or override league officer decisions.
+
+League officers retain discretion in all situations not fully defined by the rules.
+
+11.3 Rule Changes and Effective Dates
+11.3.1 Mid-Season Rule Changes
+
+Although rules are intended to change only in designated years, historical precedent exists for mid-season rule changes by captain vote.
+
+REFIT must not prevent mid-season changes.
+
+REFIT must support:
+
+Manual updates to Settings
+
+Explicit documentation of when a rule change takes effect
+
+Recalculation of affected results only if directed by the Secretary
+
+11.3.2 League Rules Version Identification
+
+League Rules should include the applicable season/year in the filename (e.g., League_Rules_2026.md).
+
+This allows:
+
+Clear historical traceability
+
+Multiple rule versions to coexist in the repository
+
+Future audits or retrospective analysis
+
+11.4 Documentation Versioning
+11.4.1 Alignment Document
+
+League_Rules_Alignment.md is a living document.
+
+It may be revised when:
+
+League rules change
+
+REFIT implementation decisions evolve
+
+Clarifications are formally agreed upon
+
+11.4.2 Versioning Approach
+
+Alignment document versions will be:
+
+Explicitly versioned (v1.0, v1.1, etc.)
+
+Archived when superseded
+
+Only the latest version is considered authoritative.
+
+11.4.3 Change Attribution
+
+Significant changes should note:
+
+Reason for change
+
+Approving authority (e.g., captains, officers)
+
+Effective week/season where applicable
+
+11.4.4 Separation of Concerns
+
+League Rules define what must happen.
+
+Alignment document defines how REFIT implements it.
+
+Power Query code implements the mechanics, not the policy.
+
+11.5 Settings as the Primary Control Surface
+
+REFIT Settings are the mechanism by which rule changes are applied.
+
+Settings updates must:
+
+Be explicit
+
+Be documented
+
+Avoid silent behavior changes
+
+11.6 Backward Compatibility
+
+REFIT must preserve the ability to:
+
+Reprocess historical seasons
+
+Apply historical rule logic correctly
+
+This is achieved via:
+
+Archived Settings snapshots
+
+Explicit season context
+
+11.7 Transparency & Auditability
+
+All REFIT behavior must be:
+
+Explainable
+
+Reproducible
+
+Auditable by a future Secretary
+
+11.8 Human Override Principle
+
+REFIT must never eliminate the Secretary’s ability to:
+
+Correct data
+
+Apply officer decisions
+
+Resolve edge cases
+
+11.9 Section Count Clarification
+
+You did not misunderstand.
+
+Early planning included 12 conceptual areas, but during consolidation:
+
+One area was absorbed into earlier sections (primarily Sections 8 and 10)
+
+The final document structure stabilized at 11 sections
+
+No material governance area was dropped.
+
+11.10 Finality of Alignment
+
+Completion of Section 11 marks:
+
+Full alignment between League Rules and REFIT design intent
+
+Closure of the alignment phase
+
+Future changes follow formal versioning and change control.
