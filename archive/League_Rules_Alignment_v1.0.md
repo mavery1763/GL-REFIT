@@ -2118,3 +2118,107 @@ Historical records remain coherent
 REFIT recalculates history; it does not rewrite it.
 
 This principle governs all correction handling, auditability, and downstream analytics.
+
+----------
+
+Section 10 – Auditability, Traceability & Governance
+Final (Agreed Alignment)
+10.1 Authoritative Source of Record
+
+The Match Report file is the authoritative source of record for all weekly results.
+
+REFIT Master never edits scoring data directly; all corrections originate from an updated Match Report.
+
+10.2 SourceFile Traceability
+
+Every row in:
+
+Upload_Indiv_Raw
+
+Upload_Team_Raw
+
+Must include SourceFile, populated by Power Query.
+
+This enables full traceability from analytics → staging → raw → originating Match Report.
+
+10.3 Audit Visibility
+
+REFIT must allow the Secretary to:
+
+Identify which Match Report file produced any given result
+
+Trace recalculations caused by reprocessing a prior week
+
+Auditability is achieved through:
+
+SourceFile
+
+Week / Date
+
+Stable schema enforcement
+
+10.4 Corrections & Reprocessing
+
+When a corrected Match Report is submitted:
+
+REFIT must reprocess that week
+
+REFIT must recompute all downstream weeks
+
+No manual intervention is required beyond replacing the Match Report file.
+
+10.5 Non-Original Match Reports
+
+Match Reports may be:
+
+Secretary-prepared (on behalf of captains)
+
+Corrected versions of prior submissions
+
+Identification may be conveyed via:
+
+File naming convention (e.g., suffix or initials)
+
+Optional internal flag (future enhancement)
+
+REFIT ingestion does not depend on filename semantics beyond uniqueness.
+
+10.6 No Silent Overrides
+
+REFIT must not silently override data from Match Reports.
+
+If inconsistencies are detected:
+
+Validation warnings are raised
+
+Human review and correction is required
+
+Governance decisions remain with captains and officers.
+
+10.7 Historical Integrity
+
+Historical results must remain reproducible:
+
+Re-running REFIT against the same Match Reports must yield the same results
+
+Any change to outcomes must be explainable via:
+
+A changed Match Report
+
+A documented rules or logic change
+
+10.8 Separation of Concerns
+
+Responsibilities are explicitly separated:
+
+Match Report → data entry & initial validation
+
+REFIT Master → ingestion, validation, calculation, analytics
+
+This separation ensures:
+
+Transparency
+
+Debuggability
+
+Long-term maintainability
