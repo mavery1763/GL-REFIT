@@ -1705,3 +1705,135 @@ Overrides occur via Match Report edits
 Master workbook consumes results as-is
 
 No silent recalculation or back-propagation
+
+----------
+
+Section 7 – Match Completion, Forfeits & Exceptional Outcomes
+
+Final (Agreed Alignment)
+
+7.1 Match Completion Scope
+
+REFIT distinguishes between individual match completion and team match completion:
+
+Individual match completion applies to a single head-to-head player match.
+
+Team match completion applies to the aggregate of the four individual matches between two teams.
+
+REFIT must not assume that individual and team completion statuses are equivalent.
+
+7.2 MatchCompleted Flag Usage
+
+MatchCompleted is recorded at the individual match level.
+
+A team match may have a mix of completed and non-completed individual matches.
+
+Team-level completion is derived, not explicitly flagged.
+
+7.3 Late Arrival Scenarios
+
+REFIT must support the following rule-compliant cases:
+
+7.3.1 Late Arrival – Player WITH Established Handicap
+
+Player may join the match at the next hole.
+
+Unplayed holes:
+
+Player receives 0 points
+
+Opponent receives points according to rules
+
+Individual match is considered completed.
+
+Player’s gross score must be excluded from future handicap calculations using ExclScore.
+
+7.3.2 Late Arrival – Player WITHOUT Established Handicap
+
+Match is treated as a forfeit.
+
+Player’s score cannot be used to establish a handicap.
+
+Opponent plays against BlindDrawForfeit.
+
+Individual match is not completed.
+
+Gross score is excluded from handicap calculations.
+
+7.4 Match Termination – Officer Decision Required
+
+If a match ends for reasons other than weather or darkness (e.g., player quits):
+
+REFIT records the factual state only.
+
+League officers determine point allocation.
+
+Secretary updates the Match Report to reflect the official decision.
+
+REFIT does not auto-infer outcomes.
+
+7.5 Inclement Weather / Darkness – Established Handicaps
+
+When both players have established handicaps:
+
+Completed holes are scored normally.
+
+Unplayed holes:
+
+Hole points are split.
+
+Individual low-net points:
+
+Awarded based on completed holes.
+
+Split if tied.
+
+Team Net Points:
+
+Based on completed individual matches.
+
+Split if no matches completed.
+
+All affected scores are excluded from future handicap calculations via ExclScore.
+
+7.6 Inclement Weather / Darkness – Unestablished Handicaps
+
+When one or both players lack established handicaps:
+
+Individual match points are split 10 / 10 regardless of holes completed.
+
+Team Net Points follow the same rules as 7.5.
+
+Scores do not contribute to handicap establishment.
+
+7.7 Full-Team Forfeit
+
+If an entire team fails to appear:
+
+Opposing team plays against BlindDrawForfeit for all four matches.
+
+Opposing team earns points normally.
+
+Forfeiting team receives zero points.
+
+No team net score is recorded for the forfeiting team.
+
+7.8 Mixed Completion Matches
+
+If fewer than four individual matches are completed:
+
+Team Net is calculated from completed matches only.
+
+Team Net score is valid only for determining Team Net Points.
+
+Team Net score must be excluded from leaderboard or low-net analytics.
+
+7.9 Data Integrity Principles
+
+REFIT records outcomes explicitly; it does not infer intent.
+
+Exceptional situations are flagged, not guessed.
+
+League officers retain final authority over disputed outcomes.
+
+Historical corrections are made by updating Match Reports, not the master dataset.
