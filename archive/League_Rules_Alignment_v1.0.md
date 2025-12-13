@@ -1993,3 +1993,128 @@ Maintains a single, auditable correction path
 Preserves trust between captains, secretary, and system
 
 Supports full automation without sacrificing control
+
+----------
+
+Section 9 – Auditability, Corrections & Historical Integrity
+
+Final (Agreed Alignment)
+
+9.1 Source-of-Truth Principle
+
+The Match Report file is the authoritative source of record for all league results.
+
+All corrections to scoring, flags, handicaps, or match conditions must be made by editing the Match Report, not by directly modifying REFIT master tables.
+
+REFIT master data is always a derived artifact, never a hand-edited system of record.
+
+This preserves transparency, accountability, and reproducibility of league history.
+
+9.2 Correction Scenarios
+
+Corrections may be required for multiple legitimate reasons, including but not limited to:
+
+Discovery of data entry errors
+
+Scoring discrepancies identified after submission
+
+Misapplication of rules
+
+Late clarification between captains
+
+League officer decisions
+
+Secretary-assisted completion of reports
+
+REFIT must support corrections without loss of historical integrity.
+
+9.3 Corrected Match Reports
+9.3.1 Corrected Files
+
+When a Match Report is corrected after initial submission:
+
+The corrected Match Report file replaces the original file in the Match Reports folder.
+
+The filename or internal metadata must clearly indicate that the file is a corrected version (e.g., “Corrected”, “Revised”, or equivalent flag).
+
+Captains review and approve the corrected report prior to re-submission.
+
+9.3.2 Secretary-Created Reports
+
+In cases where the Secretary prepares a Match Report on behalf of captains:
+
+The report must be reviewed and approved by both captains before submission.
+
+The file must clearly indicate that it was Secretary-created (via filename or internal flag).
+
+REFIT treats both corrected and secretary-created reports identically from a processing standpoint.
+
+9.4 Automated Reprocessing Behavior
+
+When a corrected Match Report is submitted:
+
+REFIT reprocesses the corrected week
+
+All subsequent weeks are automatically recalculated
+
+Downstream impacts include:
+
+Handicaps
+
+Points
+
+Standings
+
+Leaderboards
+
+Historical analytics
+
+This guarantees internal consistency without requiring manual intervention.
+
+9.5 Non-Destructive History
+
+REFIT must never:
+
+Overwrite prior results without an auditable correction
+
+Mask historical changes
+
+Mutate results silently
+
+All historical changes occur only through Match Report replacement, ensuring traceability.
+
+9.6 Identification & Traceability
+
+REFIT must retain sufficient metadata to support auditing, including:
+
+SourceFile name
+
+Week
+
+Date
+
+Team
+
+Player
+
+Correction indicators (implicit or explicit)
+
+This allows any historical record to be traced back to the exact Match Report file that produced it.
+
+9.7 Alignment with League Governance
+
+REFIT implements league officer decisions by encoding them into Match Reports, not by bypassing the reporting workflow.
+
+This ensures that:
+
+Governance decisions are visible
+
+Captains remain informed
+
+Historical records remain coherent
+
+9.8 Design Principle
+
+REFIT recalculates history; it does not rewrite it.
+
+This principle governs all correction handling, auditability, and downstream analytics.
