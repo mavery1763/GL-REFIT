@@ -1,0 +1,12 @@
+SourceFile
+Year
+Week
+Date
+Side
+Team
+Opponent
+TmNet
+TmNetPoints
+TmTotPoints
+MatchCompleted
+ForfeitFlag
