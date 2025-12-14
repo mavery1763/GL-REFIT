@@ -12,3 +12,15 @@ Imports match-level team totals from captain match reports.
 - `Team_Results_Staging`
 - Standings engine
 
+### Versioning
+Each revision is stored as a separate `.m` file:
+- `Upload_Team_Raw_v1.0.m`
+- `Upload_Team_Raw_v1.1.m`
+- `Upload_Team_Raw_v1.2.m` (current)
+
+### Version History
+- v1.0 — 2025-12-14
+- First production-intent version
+- Implemented canonical `ExpectedColumns` list
+- Added defensive column validation
+- Confirmed compatibility with current REFIT workbook
