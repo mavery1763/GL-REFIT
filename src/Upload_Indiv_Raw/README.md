@@ -22,3 +22,10 @@ Each revision is stored as a separate `.m` file:
 - `Upload_Indiv_Raw_v1.1.m`
 - `Upload_Indiv_Raw_v1.2.m` (current)
 
+### Version History
+- v1.0 — 2025-12-13
+- First production-intent version
+- Implemented canonical `ExpectedColumns` list
+- Added defensive column validation
+- Added header comment with version info, etc.
+- Confirmed compatibility with current REFIT workbook
