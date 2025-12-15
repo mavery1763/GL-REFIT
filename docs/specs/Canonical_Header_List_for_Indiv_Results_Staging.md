@@ -1,0 +1,17 @@
+SourceFile
+Week
+Date
+Side
+Team
+Opponent
+Position
+Player
+Gross
+Hdcp
+Net
+BirdiesTotal
+EaglesTotal
+DoubleEaglesTotal
+NetPoints
+PointsTotal
+ExclScore
