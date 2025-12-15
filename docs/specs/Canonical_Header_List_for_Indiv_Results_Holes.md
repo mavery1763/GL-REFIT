@@ -1,0 +1,17 @@
+SourceFile
+Week
+Date
+Side
+Team
+Opponent
+Position
+Player
+Hole
+Score
+Par
+Hcp
+NetScore
+Bird
+Eagle
+DoubleEagle
+Points
