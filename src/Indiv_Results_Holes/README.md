@@ -15,3 +15,7 @@ advanced analytics.
 - Birdie/eagle frequency reporting  
 - Visualization tools  
 
+### Version History
+- v1.0 — 2025-12-15
+- First production-intent version
+- Confirmed compatibility with current REFIT workbook
