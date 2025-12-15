@@ -12,4 +12,15 @@ Transforms Raw individual results into the canonical staging format.
 ### Downstream Usage
 - Player standings logic  
 - Handicap calculation engine  
-- Analytics layer inputs  
+- Analytics layer inputs
+
+### Versioning
+Each revision is stored as a separate `.m` file:
+- `Indiv_Results_Staging_v1.0.m`
+- `Indiv_Results_Staging_v1.1.m`
+- `Indiv_Results_Staging_v1.2.m` (current)
+
+### Version History
+- v1.0 — 2025-12-15
+- First production-intent version
+- Confirmed compatibility with current REFIT workbook
