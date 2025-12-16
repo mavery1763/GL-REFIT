@@ -13,3 +13,7 @@ Transforms Raw team totals into canonical staging format.
 - Historical reporting  
 - Multi-season analytics  
 
+### Version History
+- v1.0 — 2025-12-15
+- First production-intent version
+- Confirmed compatibility with current REFIT workbook
