@@ -2,16 +2,16 @@
 
 Data hub for GL-REFIT, fed by existing tables and calculation engines and
 designed such that downstream consumers never access raw tables.
-- Repository for all data feeds  
+- Summary_New is a snapshot of league state as-of the latest processed data
 - Source for all data needed downstream in the process flow
 - "One-stop-shop" for league state
 - No calculattions or business logic here
 - Authoritative human-readable league dashboard
 
-## Section A - League & Season Metadata
+## Section A - Season Metadata
 
 ### Purpose
-- Contains metadata for the league and current season being played
+- Defines global season context and eligibility parameters.
 
 ### Source Tables
 - TBD
@@ -30,10 +30,15 @@ designed such that downstream consumers never access raw tables.
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section B - Teams
+- vDraft.1 — 2025-12-19
+- Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section B - Team State
 
 ### Purpose
-- Contains team identity and status
+- Season-to-date team identity and competitive position.
 - 
 ### Source Tables
 - TBD
@@ -52,10 +57,15 @@ designed such that downstream consumers never access raw tables.
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section C - Players
+- vDraft.1 — 2025-12-19
+- Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section C - Player Roster State
 
 ### Purpose
-- Player registry, including non-rostered subs
+- Answer: “Who is this player right now?”
 
 ### Source Tables
 - TBD
@@ -68,13 +78,19 @@ designed such that downstream consumers never access raw tables.
 
 ### Info and Assumptions
 - One row per player, including non-rostered subs
+- “Right now” = as-of the latest successfully processed match week.
 
 ### Version History
 - vDraft — 2025-12-18
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section D - Handicaps
+- vDraft.1 — 2025-12-19
+- Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section D - Handicap State
 
 ### Purpose
 - Contains current handicap state
@@ -90,16 +106,23 @@ designed such that downstream consumers never access raw tables.
 
 ### Info and Assumptions
 - One row per player, including non-rostered subs
+- Does not contain historical progression
+- Historical handicap timelines belong in Analytics
 
 ### Version History
 - vDraft — 2025-12-18
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section E - Matches
+- vDraft.1 — 2025-12-19
+- Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section E - Match Participation (Pre/Post Match)
 
 ### Purpose
-- Contains match-level facts
+- Answer who played, where, and how they were positioned.
 
 ### Source Tables
 - TBD
@@ -111,58 +134,77 @@ designed such that downstream consumers never access raw tables.
 - TBD 
 
 ### Info and Assumptions
-- One row per match played
+- One row per player per match played
 
 ### Version History
 - vDraft — 2025-12-18
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+- vDraft.1 — 2025-12-19
+- Alignment of parameters with league need
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
 ## Section F - Player Matches
 
 ### Purpose
-- Contains data on player participation in matches that have been played
+- Season leaderboard metrics
 
 ### Source Tables
 - TBD
 
 ### Query & Output Table Name
-- Summary_New__Player_Matches
+- Summary_New__Player_Stats
 
 ### Downstream Usage
 - TBD 
 
 ### Info and Assumptions
-- One row per player, per match (8 x N matches)
+- One row per player
 
 ### Version History
 - vDraft — 2025-12-18
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section G - Season-to-date stats
+- vDraft.1 — 2025-12-19
+- Purpose was ... Contains player participation data in played matches
+- Query & Output Table were Summary_New__Player_Matches
+- Grain was 1 row / player / match (8 x N played matches)
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section G - Weekly Player Results
 
 ### Purpose
-- Contains season-to-date stats for players, including non-rostered subs
+- Weekly outputs for reports, audits, and recalculation verification
 
 ### Source Tables
 - TBD
 
 ### Query & Output Table Name
-- Summary_New__Season_Stats
+- Summary_New__Weekly_Stats
 
 ### Downstream Usage
 - TBD 
 
 ### Info and Assumptions
-- One row per match participant
+- One row per player
 
 ### Version History
 - vDraft — 2025-12-18
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
-## Section H - Weekly Stats
+- vDraft.1 — 2025-12-19
+- Section name was Season-to-date Stats
+- Purpose was to contain players' season-to-date stats
+- Query & Output Table names were Summary_New__Season_Stats
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+## Section H - Weekly Stats (ELIMINATED in vDraft.1 revision)
 
 ### Purpose
 - Contains weekly stats for match participants
@@ -183,3 +225,6 @@ designed such that downstream consumers never access raw tables.
 - vDraft — 2025-12-18
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
+
+- vDraft.1 — 2025-12-19
+- Section H was eliminated in this schema revision
