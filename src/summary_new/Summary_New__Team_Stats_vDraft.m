@@ -19,7 +19,7 @@
 /*
 ===============================================================================
  Query:      Summary_New__Team_stats
- Status:     DRAFT (Schema stub)
+ Status:     DRAFT (Schema stub) ELIMINATED in vDraft.1 of schema
  Purpose:    
  Layer:      Summary_New
 -------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
  - Populated later by engines
 ===============================================================================
 */
-
+/*
 let
     Schema =
         #table(
