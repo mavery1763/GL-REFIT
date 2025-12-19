@@ -49,7 +49,15 @@ let
                 Course                   = text,
                 MatchCompletedInd        = logical,
                 ForfeitFlag              = logical,
-                BlindDrawType            = text
+                BlindDrawType            = text,
+                ReportingCaptainApproved = logical,
+                OpposingCaptainApproved  = logical,
+                IsCorrection             = logical,
+                CorrectionReason         = text,
+                CorrectionEnteredBy      = text,
+                CorrectionDate           = date,
+                CaptainReapproved        = logical,
+                ApprovalStatus           = text
             ],
             {}
         )

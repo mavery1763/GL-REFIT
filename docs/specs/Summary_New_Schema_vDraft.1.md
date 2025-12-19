@@ -130,6 +130,14 @@ Course	text
 MatchCompletedInd	logical
 ForfeitFlag	logical
 BlindDrawType	text
+ReportingCaptainApproved    logical
+OpposingCaptainApproved    logical
+IsCorrection     logical
+CorrectionReason     text
+CorrectionEnteredBy     text
+CorrectionDate      date
+CaptainReapproved     logical
+ApprovalStatus     text
 Section F — Player Season Totals
 
 Query: Summary_New__Player_Stats
