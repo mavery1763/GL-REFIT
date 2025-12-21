@@ -228,3 +228,6 @@ designed such that downstream consumers never access raw tables.
 
 - vDraft.1 — 2025-12-19
 - Section H was eliminated in this schema revision
+- Reason: Redundant with Summary_New__Teams and Summary_New__Matches
+- Replacement: Use Summary_New__Teams for season totals
+- Status: Deprecated (do not implement)

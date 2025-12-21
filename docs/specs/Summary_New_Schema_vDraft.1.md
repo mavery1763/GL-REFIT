@@ -193,3 +193,12 @@ Historical per-hole timelines
 Trend analytics
 
 File-level provenance
+
+### Removed Tables (as of vDraft.1)
+
+The following table was intentionally removed during schema consolidation:
+
+- Summary_New__Team_Stats
+  - Reason: Redundant with Summary_New__Teams and Summary_New__Matches
+  - Replacement: Use Summary_New__Teams for season totals
+  - Status: Deprecated (do not implement)

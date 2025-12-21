@@ -28,6 +28,10 @@
  - No inference
  - Single-row table
  - Populated later by engines
+ - Removal reason: Redundant with Summary_New__Teams and Summary_New__Matches
+ - Replacement: Use Summary_New__Teams for season totals
+ - Status: Deprecated (do not implement)
+
 ===============================================================================
 */
 /*
