@@ -35,6 +35,10 @@ designed such that downstream consumers never access raw tables.
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
+- vDraft.2 — 2025-12-21
+- Completed wiring to populate with data from workbook tables and queries
+- Confirmed compatibility with current REFIT workbook
+
 ## Section B - Team State
 
 ### Purpose
@@ -59,6 +63,11 @@ designed such that downstream consumers never access raw tables.
 
 - vDraft.1 — 2025-12-19
 - Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+- vDraft.2 — 2025-12-21
+- Removed AsOfMatchDate and AsOfMatchWeek
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
@@ -90,6 +99,11 @@ designed such that downstream consumers never access raw tables.
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
+- vDraft.2 — 2025-12-21
+- Removed AsOfMatchDate and AsOfMatchWeek
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
 ## Section D - Handicap State
 
 ### Purpose
@@ -116,6 +130,11 @@ designed such that downstream consumers never access raw tables.
 
 - vDraft.1 — 2025-12-19
 - Alignment of parameters with league need
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+
+- vDraft.2 — 2025-12-21
+- Removed AsOfMatchDate and AsOfMatchWeek
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
@@ -175,6 +194,11 @@ designed such that downstream consumers never access raw tables.
 - Stub query until engines exist
 - Confirmed compatibility with current REFIT workbook
 
+- vDraft.2 — 2025-12-21
+- Removed AsOfMatchDate and AsOfMatchWeek
+- Stub query until engines exist
+- Confirmed compatibility with current REFIT workbook
+- 
 ## Section G - Weekly Player Results
 
 ### Purpose
