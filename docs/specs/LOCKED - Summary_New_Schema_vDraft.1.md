@@ -13,8 +13,18 @@ Design Principles (Reconfirmed)
 
 Summary_New is a snapshot of league state as-of the latest processed data
 
-Every table that represents “current state” includes an AsOfMatchWeek and 
-AsOfMatchDate
+As-Of Semantics (Locked)
+
+   Only Summary_New__Season explicitly declares the AsOfMatchWeek and
+   AsOfMatchDate fields.
+
+   All other Summary_New tables implicitly represent state as of the
+   snapshot declared in Summary_New__Season and MUST NOT duplicate
+   those fields.
+
+   Per-match and per-week tables encode time intrinsically via
+   MatchWeek / MatchDate.
+
 
 Engines consume Summary_New, not ingestion or staging
 
@@ -38,6 +48,7 @@ AsOfMatchWeek	number	Latest processed week
 AsOfMatchDate	date	Date of latest processed match
 SeasonRoundsPlanned	number	May change mid-season
 Eligibility_MinPctRounds	number	e.g., 0.5
+
 Section B — Team State
 
 Query: Summary_New__Teams
@@ -51,8 +62,6 @@ SeasonYear	number
 Team	text
 TeamKey	text
 Captain	text
-AsOfMatchWeek	number
-AsOfMatchDate	date
 TeamPoints	number
 TeamWins	number
 TeamLosses	number
@@ -60,6 +69,7 @@ TeamTies	number
 LowTeamNet	number
 HighTeamPoints	number
 CurrentlyInPlayoffs	logical
+
 Section C — Player Roster State
 
 Query: Summary_New__Players
@@ -80,8 +90,6 @@ RosterStartDate	date
 RosterEndDate	date
 PlayerPhone	text
 PlayerEmail	text
-AsOfMatchWeek	number
-AsOfMatchDate	date
 
 Interpretation:
 “Right now” = as-of the latest successfully processed match week.
@@ -103,14 +111,13 @@ Handicap	number
 HandicapCalcBasis	text
 HandicapRounds	number
 SeasonRoundsPlayed	number
-AsOfMatchWeek	number
-AsOfMatchDate	date
 
 Historical handicap timelines belong in Analytics later, not here.
 
 Section E — Match Participation (Pre/Post Match)
 
 Query: Summary_New__Matches
+
 Grain: 1 row per player per match
 
 Purpose:
@@ -138,6 +145,7 @@ CorrectionEnteredBy     text
 CorrectionDate      date
 CaptainReapproved     logical
 ApprovalStatus     text
+
 Section F — Player Season Totals
 
 Query: Summary_New__Player_Stats
@@ -150,8 +158,6 @@ Column	Type
 SeasonYear	number
 Player	text
 PlayerKey	text
-AsOfMatchWeek	number
-AsOfMatchDate	date
 RoundsPlayed	number
 TotalPoints	number
 AvgPoints	number
@@ -162,6 +168,7 @@ LowNet	number
 TotBirdies	number
 TotEagles	number
 TotDoubleEagles	number
+
 Section G — Weekly Player Results
 
 Query: Summary_New__Weekly_Stats

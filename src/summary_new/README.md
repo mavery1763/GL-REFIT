@@ -24,6 +24,17 @@ designed such that downstream consumers never access raw tables.
 
 ### Info and Assumptions
 - One row per season
+- As-Of Semantics (Locked)
+    Only Summary_New__Season explicitly declares the AsOfMatchWeek and
+    AsOfMatchDate fields.
+
+    All other Summary_New tables implicitly represent state as of the
+    snapshot declared in Summary_New__Season and MUST NOT duplicate
+    those fields.
+
+    Per-match and per-week tables encode time intrinsically via
+    MatchWeek / MatchDate.
+
 
 ### Version History
 - vDraft — 2025-12-18
