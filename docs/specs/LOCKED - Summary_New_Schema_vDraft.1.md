@@ -1,7 +1,7 @@
 Summary_New — Canonical Schema
 
 Version: vDraft.1
-Status: Draft (lock before engine implementation)
+Status: Draft (LOCKED as of 12/21/2025)
 Scope: Regular season only (playoffs out of scope)
 Layer: Summary_New
 Design Role:

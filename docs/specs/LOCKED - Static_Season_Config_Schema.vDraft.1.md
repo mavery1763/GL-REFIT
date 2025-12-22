@@ -39,4 +39,4 @@ not as a database table.
   Course* setting pattern if multi-course seasons are introduced
 
 ## Versioning
-- vDraft.1: initial contract
+- vDraft.1: initial contract (LOCKED as of 12/21/2025)
