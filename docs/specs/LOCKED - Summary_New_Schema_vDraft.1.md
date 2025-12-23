@@ -1,205 +1,212 @@
-Summary_New — Canonical Schema
+# Summary_New — Canonical Schema
 
-Version: vDraft.1
-Status: Draft (LOCKED as of 12/21/2025)
-Scope: Regular season only (playoffs out of scope)
-Layer: Summary_New
+Version: vDraft.1  
+Status: Draft (LOCKED as of 12/21/2025)  
+Scope: Regular season only (playoffs out of scope)  
+Layer: Summary_New  
 Design Role:
 
-Human-readable, engine-ready, season-state snapshot layer
-No file I/O, no business calculations, no inference
+---
 
-Design Principles (Reconfirmed)
+## Purpose
 
-Summary_New is a snapshot of league state as-of the latest processed data
+This document defines the canonical schema for the Summary_New layer, which is a human-readable, engine-ready, season-state snapshot layer:
+- No file I/O
+- No business calculations
+- No inference
 
-As-Of Semantics (Locked)
+## Intended Audience
+- Project maintainer (secretary / technical lead)
+- Future contributors to REFIT
+- Debugging and audit reference
 
-   Only Summary_New__Season explicitly declares the AsOfMatchWeek and
-   AsOfMatchDate fields.
+## When to Read This
+- When wiring Summary_New queries
+- When validating schema compliance
+- When diagnosing downstream engine behavior
 
-   All other Summary_New tables implicitly represent state as of the
+
+### Design Principles (Reconfirmed)
+
+1. Summary_New is a snapshot of league state as-of the latest processed data
+
+2. Engines consume Summary_New, not ingestion or staging
+
+3. Stubs must exactly match this schema before engines are built
+
+4. Schema stability > early optimization  
+   
+5. **IMPORTANT: As-Of Semantics (Locked)
+
+   - Only Summary_New__Season explicitly declares the AsOfMatchWeek and AsOfMatchDate fields.
+   - All other Summary_New tables implicitly represent state as of the
    snapshot declared in Summary_New__Season and MUST NOT duplicate
    those fields.
+   - Per-match and per-week tables encode time intrinsically via
+   MatchWeek / MatchDate.**
 
-   Per-match and per-week tables encode time intrinsically via
-   MatchWeek / MatchDate.
+### Explicitly Out of Scope (Confirmed)
 
+- Playoff logic and playoff summaries
+- Historical per-hole timelines
+- Trend analytics
+- File-level provenance
 
-Engines consume Summary_New, not ingestion or staging
+### Section A — Season Metadata
 
-Stubs must exactly match this schema before engines are built
+Query: Summary_New__Season  
+Grain: 1 row per season  
+Purpose: Defines global season context and eligibility parameters.
 
-Schema stability > early optimization
+Column | Type | Notes
+---|---|---
+SeasonYear | number | e.g., 2026
+LeagueName | text | Human-readable
+SeasonStatus | text | Planned / Active / Complete
+AsOfMatchWeek |number | Latest processed week
+AsOfMatchDate |date | Date of latest processed match
+SeasonRoundsPlanned | number | May change mid-season
+Eligibility_MinPctRounds | number | e.g., 0.5
 
-Section A — Season Metadata
+### Section B — Team State
 
-Query: Summary_New__Season
-Grain: 1 row per season
+Query: Summary_New__Teams  
+Grain: 1 row per team  
+Purpose: Season-to-date team identity and competitive position.
 
-Purpose:
-Defines global season context and eligibility parameters.
+Column | Type
+---|---
+SeasonYear | number
+Team | text
+TeamKey | text
+Captain | text
+TeamPoints | number
+TeamWins | number
+TeamLosses | number
+TeamTies | number
+LowTeamNet | number
+HighTeamPoints | number
+CurrentlyInPlayoffs | logical
 
-Column	Type	Notes
-SeasonYear	number	e.g., 2026
-LeagueName	text	Human-readable
-SeasonStatus	text	Planned | Active | Complete
-AsOfMatchWeek	number	Latest processed week
-AsOfMatchDate	date	Date of latest processed match
-SeasonRoundsPlanned	number	May change mid-season
-Eligibility_MinPctRounds	number	e.g., 0.5
+### Section C — Player Roster State
 
-Section B — Team State
+Query: Summary_New__Players  
+Grain: 1 row per player  
+Purpose: Answer: “Who is this player *right now?*”
 
-Query: Summary_New__Teams
-Grain: 1 row per team
-
-Purpose:
-Season-to-date team identity and competitive position.
-
-Column	Type
-SeasonYear	number
-Team	text
-TeamKey	text
-Captain	text
-TeamPoints	number
-TeamWins	number
-TeamLosses	number
-TeamTies	number
-LowTeamNet	number
-HighTeamPoints	number
-CurrentlyInPlayoffs	logical
-
-Section C — Player Roster State
-
-Query: Summary_New__Players
-Grain: 1 row per player
-
-Purpose:
-Answer: “Who is this player right now?”
-
-Column	Type
-SeasonYear	number
-Player	text
-PlayerKey	text
-Team	text
-ActiveStatus	text
-IsCaptain	logical
-Tee	text
-RosterStartDate	date
-RosterEndDate	date
-PlayerPhone	text
-PlayerEmail	text
+Column | Type
+---|---
+SeasonYear | number
+Player | text
+PlayerKey | text
+Team | text
+ActiveStatus | text
+IsCaptain | logical
+Tee | text
+RosterStartDate | date
+RosterEndDate | date
+PlayerPhone | text
+PlayerEmail | text
 
 Interpretation:
-“Right now” = as-of the latest successfully processed match week.
+*“Right now” = as-of the latest successfully processed match week.*
 
-Section D — Handicap State
+### Section D — Handicap State
 
-Query: Summary_New__Handicaps
-Grain: 1 row per player
-
+Query: Summary_New__Handicaps  
+Grain: 1 row per player  
 Purpose:
 Current handicap status, not historical progression.
 
-Column	Type
-SeasonYear	number
-Player	text
-PlayerKey	text
-EstablishedHcp	logical
-Handicap	number
-HandicapCalcBasis	text
-HandicapRounds	number
-SeasonRoundsPlayed	number
+Column | Type
+---|---
+SeasonYear | number
+Player | text
+PlayerKey | text
+EstablishedHcp | logical
+Handicap | number
+HandicapCalcBasis | text
+HandicapRounds | number
+SeasonRoundsPlayed | number
 
-Historical handicap timelines belong in Analytics later, not here.
+Note:  Historical handicap timelines belong in Analytics later, not here.
 
-Section E — Match Participation (Pre/Post Match)
+### Section E — Match Participation (Pre/Post Match)
 
-Query: Summary_New__Matches
-
-Grain: 1 row per player per match
-
+Query: Summary_New__Matches  
+Grain: 1 row per player per match  
 Purpose:
 Who played, where, and how they were positioned.
 
-Column	Type
-SeasonYear	number
-MatchWeek	number
-MatchDate	date
-Team	text
-Opponent	text
-Player	text
-PlayerKey	text
-PositionPlayed	number
-Side	text
-Course	text
-MatchCompletedInd	logical
-ForfeitFlag	logical
-BlindDrawType	text
-ReportingCaptainApproved    logical
-OpposingCaptainApproved    logical
-IsCorrection     logical
-CorrectionReason     text
-CorrectionEnteredBy     text
-CorrectionDate      date
-CaptainReapproved     logical
-ApprovalStatus     text
+Column | Type
+---|---
+SeasonYear | number
+MatchWeek | number
+MatchDate | date
+Team | text
+Opponent | text
+Player | text
+PlayerKey | text
+PositionPlayed | number
+Side | text
+Course | text
+MatchCompletedInd | logical
+ForfeitFlag | logical
+BlindDrawType | text
+ReportingCaptainApproved | logical
+OpposingCaptainApproved | logical
+IsCorrection | logical
+CorrectionReason | text
+CorrectionEnteredBy | text
+CorrectionDate | date
+CaptainReapproved | logical
+ApprovalStatus | text
 
-Section F — Player Season Totals
+### Section F — Player Season Totals
 
-Query: Summary_New__Player_Stats
-Grain: 1 row per player
-
+Query: Summary_New__Player_Stats  
+Grain: 1 row per player  
 Purpose:
 Season leaderboard metrics.
 
-Column	Type
-SeasonYear	number
-Player	text
-PlayerKey	text
-RoundsPlayed	number
-TotalPoints	number
-AvgPoints	number
-AvgGross   number
-AvgNet    number
-LowGross	number
-LowNet	number
-TotBirdies	number
-TotEagles	number
-TotDoubleEagles	number
+Column | Type
+---|---
+SeasonYear | number
+Player | text
+PlayerKey | text
+RoundsPlayed | number
+TotalPoints | number
+AvgPoints | number
+AvgGross | number
+AvgNet | number
+LowGross | number
+LowNet | number
+TotBirdies | number
+TotEagles | number
+TotDoubleEagles | number
 
-Section G — Weekly Player Results
+### Section G — Weekly Player Results
 
-Query: Summary_New__Weekly_Stats
-Grain: 1 row per player per week
-
+Query: Summary_New__Weekly_Stats  
+Grain: 1 row per player per week  
 Purpose:
 Weekly outputs for reports, audits, and recalculation verification.
 
-Column	Type
-SeasonYear	number
-MatchWeek	number
-MatchDate	date
-Player	text
-PlayerKey	text
-GrossScore	number
-NetScore	number
-Points	number
-Birdies	number
-Eagles	number
-DoubleEagles	number
-ExclScore	logical
+Column | Type
+---|---
+SeasonYear | number
+MatchWeek | number
+MatchDate | date
+Player | text
+PlayerKey | text
+GrossScore | number
+NetScore | number
+Points | number
+Birdies | number
+Eagles | number
+DoubleEagles | number
+ExclScore | logical
 
-Explicitly Out of Scope (Confirmed)
-
-Playoff logic and playoff summaries
-
-Historical per-hole timelines
-
-Trend analytics
-
-File-level provenance
 
 ### Removed Tables (as of vDraft.1)
 
