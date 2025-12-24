@@ -78,11 +78,13 @@ let
         AddEmail =
             Table.AddColumn(AddContact, "PlayerEmail", each null, type text),
         
+        SeasonConfig =
+            Excel.CurrentWorkbook(){[Name = "Static_Season_Config"]}[Content],
+
+        
         SeasonYear =
             Number.From(
-                Static_Season_Config{
-                    [SettingKey = "SeasonYear"]
-                }[SettingValue]
+                SeasonConfig{[SettingKey = "SeasonYear"]}[SettingValue]
             ),
 
         AddSeasonYear =
