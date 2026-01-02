@@ -23,7 +23,9 @@ let
             Table.SelectColumns(
                 Source,
                 {
+                    "SeasonYear",
                     "Player",
+                    "PlayerKey",
                     "Team",
                     "MatchWeek",
                     "MatchDate"
@@ -45,18 +47,11 @@ let
                 SortLatest,
                 {"Player"}
             ),
-        
-        AddPlayerKey =
-            Table.AddColumn(
-                OneRowPerPlayer,
-                "PlayerKey",
-                each Text.Upper(Text.Trim([Player])),
-                type text
-            ),
 
         AddFields =
             Table.TransformColumns(
-                Table.AddColumn(AddPlayerKey, "ActiveStatus", each "Active", type text),
+                Table.AddColumn(OneRowPerPlayer, "ActiveStatus", each "Active",
+                    type text),
                 {}
             ),
 
@@ -70,34 +65,18 @@ let
             Table.AddColumn(AddTee, "RosterStartDate", each null, type date),
 
         AddRosterEnd =
-            Table.AddColumn(AddRosterDates, "RosterEndDate", each null, type date),
+            Table.AddColumn(AddRosterDates, "RosterEndDate", each null,
+                type date),
 
         AddContact =
             Table.AddColumn(AddRosterEnd, "PlayerPhone", each null, type text),
 
         AddEmail =
             Table.AddColumn(AddContact, "PlayerEmail", each null, type text),
-        
-        SeasonConfig =
-            Excel.CurrentWorkbook(){[Name = "Static_Season_Config"]}[Content],
-
-        
-        SeasonYear =
-            Number.From(
-                SeasonConfig{[SettingKey = "SeasonYear"]}[SettingValue]
-            ),
-
-        AddSeasonYear =
-            Table.AddColumn(
-                AddEmail,
-                "SeasonYear",
-                each SeasonYear,
-                type number
-            ),
 
         Final =
             Table.SelectColumns(
-                AddSeasonYear,
+                AddEmail,
                 {
                     "SeasonYear",
                     "Player",
@@ -116,3 +95,18 @@ let
 in
     Final
 
+/* Version History
+
+    vDraft.3 - 2025-12-31 
+    - Removed ExclScore code block and added note to clarify handling of score
+      exclusions.
+    - Removed code to derive and add key fields (SeasonYear, PlayerKey, TeamKey)
+      as these are now included in the source table.
+
+    vDraft.2 - 2025-12-
+
+    vDraft.1 - 2025-12-
+
+    v1.0 - 2025-12- - Initial version
+
+*/

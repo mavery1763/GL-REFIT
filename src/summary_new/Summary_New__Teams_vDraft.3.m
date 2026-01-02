@@ -29,6 +29,7 @@ let
             Table.SelectColumns(
                 Source,
                 {
+                    "SeasonYear",
                     "Team",
                     "TeamKey",
                     "Year",
@@ -45,14 +46,14 @@ let
             Excel.CurrentWorkbook(){[Name = "Static_Season_Config"]}[Content],
 
         
-        SeasonYear =
+        TargetSeasonYear =
             Number.From(
                 SeasonConfig{[SettingKey = "SeasonYear"]}[SettingValue]
             ),
 
         CurrentTeamsData = 
             Table.SelectRows(SelectCols,
-                each [Year] = SeasonYear),
+                each [SeasonYear] = TargetSeasonYear),
     /*
     ***************************************************************************
         Add columns and calculate win, tie or loss for each team match
@@ -83,13 +84,14 @@ let
             ),
     /*
     ***************************************************************************
-        Aggregate results by team
+        Aggregate filtered results by team
     ***************************************************************************
     */
         AggTeamData = 
             Table.Group(
                 AddLoss,
-                {   "Team",
+                {   "SeasonYear",
+                    "Team",
                     "TeamKey"},
                 {
                     {"TeamPoints", each List.Sum([TmTotPoints]),
@@ -143,24 +145,12 @@ let
                 // pending creation of Team_Master
     /*
     ***************************************************************************
-        Rename the Year column to SeasonYear
-    ***************************************************************************
-    */
-    //    AddSeasonYear =
-            Table.AddColumn(
-                AddCaptain,
-                "SeasonYear",
-                each SeasonYear,
-                type number
-             ),
-    /*
-    ***************************************************************************
         Output the final Summary_New__Teams table
     ***************************************************************************
     */
     Final =
         Table.SelectColumns(
-            AddSeasonYear,
+            AddCaptain,
             {
                 "SeasonYear",
                 "Team",
@@ -177,3 +167,18 @@ let
         )
 in
 Final
+
+/* Version History
+
+    vDraft.3 - 2026-01-02
+    - Added Version History block
+    - Removed code to derive and add key fields (SeasonYear, PlayerKey, TeamKey)
+      as these are now included in the source table.
+
+    vDraft.2 - 2025-12-
+
+    vDraft.1 - 2025-12-
+
+    v1.0 - 2025-12- - Initial version
+
+*/
