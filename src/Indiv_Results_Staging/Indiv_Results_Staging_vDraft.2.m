@@ -190,7 +190,7 @@ let
                 {"DoubleEaglesTotal", Int64.Type},
                 {"NetPoints",         type number},
                 {"PointsTotal",       type number},
-                {"ExclScore",         type text}
+                {"ExclScore",         type logical}
             },
             "en-US"
         )
