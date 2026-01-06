@@ -1,10 +1,10 @@
 /*
 ===============================================================================
  Query:        Indiv_Results_Holes
- Version:      vDraft.1
+ Version:      vDraft.2
  Status:       
- Author:       GL-REFIT
- Last Updated: 2026-01-01
+ Author:       Mike Avery
+ Last Updated: 2026-01-04
 
  Purpose:
    Explodes player-round records into a normalized hole-level fact table
@@ -52,12 +52,27 @@ let
     // 3. ADD COLUMNS FOR SEASONYEAR, PLAYERKEY, TEAMKEY, MATCHKEY AND DERIVE
     //
     
-    SeasonConfig =
-        Excel.CurrentWorkbook(){[Name = "Static_Season_Config"]}[Content],
+    SeasonConfigQry =
+        qry_Static_Season_Config,
+
+    GetSeasonSetting =
+        (key as text) as any =>
+            let
+                rows =
+                    Table.SelectRows(
+                        SeasonConfigQry,
+                        each [SettingKey] = key
+                    )
+            in
+                if Table.RowCount(rows) = 1
+                then rows{0}[SettingValue]
+                else error
+                    "Expected exactly one '" & key & "' row in
+                        Static_Season_Config",
 
     SeasonYear =
         Number.From(
-            SeasonConfig{[SettingKey = "SeasonYear"]}[SettingValue]
+            GetSeasonSetting("SeasonYear")
         ),
 
     AddSeasonYear =
@@ -218,11 +233,19 @@ let
 in
     TypedFinal
 
-/* Version History
+/* 
+Version History
 
-v1.0 - 2025-12- - Initial version
+vDraft.2 2026-01-04
+- Replaced direct call to Static_Season_Config table with call to 
+    qry_Static_Season_Config query to pull in SeasonYear.
 
-vDraft.1 - 2026-01-01 - Removed base type coercion for ID fields at the beginning
-and added type coercion in TypedFinal.  Added columns for, and derived,
-SeasonYear, PlayerKey, TeamKey and MatchKey.
+vDraft.1 2026-01-01
+- Removed base type coercion for ID fields at the beginning and added type
+    coercion in TypedFinal.  Added columns for, and derived, SeasonYear, 
+    PlayerKey, TeamKey and MatchKey.
+
+v1.0  2025-12-
+- Original version
+
 */
