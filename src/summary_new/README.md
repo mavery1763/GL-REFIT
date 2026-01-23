@@ -5,8 +5,20 @@ designed such that downstream consumers never access raw tables.
 - Summary_New is a snapshot of league state as-of the latest processed data
 - Source for all data needed downstream in the process flow
 - "One-stop-shop" for league state
-- No calculattions or business logic here
+- No calculations or business logic here
 - Authoritative human-readable league dashboard
+
+# Summary_New__* single-season contract (v1.0)
+
+All Summary_New__* queries are strictly single-season and deterministic. Each
+Summary query must bind to exactly one Active season (via SeasonStatus="Active"),
+and must not blend multiple seasons.
+
+Cross-season requirements (e.g., handicap seeding from prior seasons, historical
+audits, multi-season reporting) are explicitly out of scope for Summary queries
+and must be handled either:
+- inside the consuming engine (recommended for calculations), or
+- via dedicated historical/reporting queries (for auditing/reporting).
 
 ## Section A - Season Metadata
 

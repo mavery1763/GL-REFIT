@@ -65,6 +65,21 @@ Only one table explicitly declares the snapshot moment.
 
 ---
 
+## Summary_New__* single-season contract (v1.0)
+
+All Summary_New__* queries are strictly single-season and deterministic. Each
+Summary query must bind to exactly one Active season (via SeasonStatus="Active"),
+and must not blend multiple seasons.
+
+Cross-season requirements (e.g., handicap seeding from prior seasons, historical
+audits, multi-season reporting) are explicitly out of scope for Summary queries
+and must be handled either:
+
+- inside the consuming engine (recommended for calculations), or
+- via dedicated historical/reporting queries (for auditing/reporting).
+  
+---
+
 ## Schema Overview
 
 | Table | Purpose | Grain |

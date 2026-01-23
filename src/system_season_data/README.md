@@ -37,6 +37,18 @@ This ensures:
 - centralized validation
 - auditable configuration usage
 
+## SeasonKey vs SeasonYear (v1.0 semantics)
+- SeasonKey is the canonical scope identifier used throughout GL-REFIT to filter/
+  join season-scoped configuration and season-scoped data.
+- SeasonYear is a season attribute used for reporting/presentation. It is stored
+  as a season-scoped scalar setting in Static_Season_Config (i.e., SettingKey=
+  "SeasonYear").
+- While SeasonKey and SeasonYear may often be equal, this is not required and
+  must not be relied upon for scoping or joins. All season scoping must use
+  SeasonKey.
+- REFIT enforces determinism by requiring exactly one season be marked
+  SeasonStatus="Active" at a time.
+
 ## SeasonYear as Primary Scope Key
 
 `SeasonYear` is the primary scoping key for all season-specific data.
@@ -73,4 +85,5 @@ contract.  All other columns are informational and MUST NOT be referenced by
 queries.
 
 ## Change Log
+- 2026-01-23 - added section clarifying SeasonKey vs SeasonYear
 - 2026-01-04 - added section
