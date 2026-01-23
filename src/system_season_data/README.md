@@ -49,14 +49,15 @@ This ensures:
 - REFIT enforces determinism by requiring exactly one season be marked
   SeasonStatus="Active" at a time.
 
-## SeasonYear as Primary Scope Key
+## SeasonKey as Primary Scope Key (v1.0)
 
-`SeasonYear` is the primary scoping key for all season-specific data.
+`SeasonKey` is the primary scoping key for all season-specific configuration and
+season-scoped tables.
 
 Rules:
-- Every season-scoped table MUST include `SeasonYear`
-- Joins across season-scoped tables MUST include `SeasonYear`
-- No query may infer SeasonYear from dates or filenames
+- Every season-scoped table MUST include SeasonKey
+- Joins across season-scoped tables MUST include SeasonKey
+- No query may infer SeasonKey from dates or filenames
 
 ## Array-Valued Settings
 

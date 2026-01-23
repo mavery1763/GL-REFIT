@@ -1,4 +1,8 @@
-# Static_Season_Config — Schema (vDraft.1)
+# Static_Season_Config — Schema
+- Version: vDraft.3
+- Status: LOCKED
+- Last updated: 2026-01-23
+- Tag: TBD
 
 ## Purpose
 Defines season-scoped configuration values used by qry_Static_Season_Config and
