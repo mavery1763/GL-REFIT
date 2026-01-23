@@ -17,9 +17,16 @@
 */
 
 let
-    // ============================================================
-    // SECTION 0 — SEASON CONTEXT (Static_Season_Config)
-    // ============================================================
+    /* ========================================================================
+       SECTION 0 — SEASON CONTEXT (Static_Season_Config)
+        -------------------------
+        - At any point in time, exactly one season must be marked as 
+          SeasonStatus = Active in Static_Season_Config. ()
+        - REFIT will throw an error if zero or multiple Active seasons are 
+          detected. Ref CurrentSeasonKey.  This is a deliberate design choice to
+          ensure deterministic Summary outputs.
+        - Historical seasons are accessed explicitly, not via the Active flag.
+      =========================================================================*/
 
     AllSeasonSettings =
         qry_Static_Season_Config,
