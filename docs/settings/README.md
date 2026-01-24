@@ -1,9 +1,13 @@
 # Settings Documentation
 
-This folder contains all documentation related to the **Settings sheet**, which is the central configuration control panel for the REFIT scoring system.  
-Every Power Query module depends on these settings to determine how the system behaves during file ingestion, scoring, staging, analytics, Blind Draw logic, and seasonal configuration.
+This folder contains all documentation related to the **Settings sheet**, which
+is the central configuration control panel for the REFIT scoring system.  Every
+Power Query module depends on these settings to determine how the system behaves
+during file ingestion, scoring, staging, analytics, Blind Draw logic, and
+seasonal configuration.
 
-The Settings sheet is intentionally designed so that **future league secretaries can operate the REFIT system without editing Power Query code**.  
+The Settings sheet is intentionally designed so that **future league**
+**secretaries can operate the REFIT system without editing Power Query code**.  
 All rules, parameters, and file paths must be controlled here.
 
 ---
@@ -30,7 +34,8 @@ Provides a complete reference for every named range used in REFIT, including:
 - How Power Query consumes the value  
 - Impact of changes on scoring or workflows  
 
-This is the *authoritative source* for understanding what each setting means and how it should be used.
+This is the *authoritative source* for understanding what each setting means and
+how it should be used.
 
 ---
 
@@ -51,7 +56,8 @@ By centralizing configuration, REFIT avoids:
 - Query rewrites  
 - Fragile dependencies  
 
-This documentation ensures future maintainers understand *how and why* settings control the entire system.
+This documentation ensures future maintainers understand *how and why* settings
+control the entire system.
 
 ---
 

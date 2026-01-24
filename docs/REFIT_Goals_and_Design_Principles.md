@@ -1,14 +1,16 @@
 # REFIT Goals and Design Principles
 
-The REFIT architecture is intentionally engineered for **stability, clarity, maintainability, and extensibility**.  
-This document defines the design principles that guide all development work.
+The REFIT architecture is intentionally engineered for **stability, clarity,**
+**maintainability, and extensibility**.  This document defines the design
+principles that guide all development work.
 
 ---
 
 ## Primary Goals
 
 ### 1. Eliminate Fragility
-Legacy workbooks are prone to broken formulas, inconsistent edits, and structural drift.  
+Legacy workbooks are prone to broken formulas, inconsistent edits, and structural
+drift.  
 REFIT ensures:
 - No hard-coded paths
 - No implicit column indexing
@@ -74,4 +76,5 @@ Avoid design decisions that restrict expansion.
 
 ---
 
-REFIT’s principles ensure a robust, readable system that the league can depend on for many years.
+REFIT’s principles ensure a robust, readable system that the league can depend on
+for many years.

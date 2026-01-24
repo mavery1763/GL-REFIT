@@ -13,7 +13,9 @@
 
 Defines the canonical schema for the `Summary_New` layer.
 
-This layer represents a **human-readable, engine-ready snapshot of league state** as of the most recently processed match data. It is the sole input layer for scoring, handicap, and reporting engines.
+This layer represents a **human-readable, engine-ready snapshot of league state**
+as of the most recently processed match data. It is the sole input layer for
+scoring, handicap, and reporting engines.
 
 ---
 
@@ -40,7 +42,8 @@ Read this document when:
 
 The following rules apply to **all** `Summary_New` tables:
 
-- Summary_New represents a **snapshot of league state** as of the latest successfully processed data.
+- Summary_New represents a **snapshot of league state** as of the latest
+  successfully processed data.
 - Summary_New tables **MUST NOT**:
   - perform business calculations
   - perform inference or decision logic
@@ -136,7 +139,8 @@ Season-to-date team identity and competitive position.
 | TeamTies | number |  aggregate from Team_Results_Staging | |
 | LowTeamNet | number | derive from Team_Results_Staging | |
 | HighTeamPoints | number | derive from Team_Results_Staging | |
-| CurrentlyInPlayoffs | logical | derive from Team_Results_Staging | TRUE = top 4 teams (points and tiebreakers) |
+| CurrentlyInPlayoffs | logical | derive from Team_Results_Staging | TRUE = top 4
+teams (points and tiebreakers) |
 
 ---
 

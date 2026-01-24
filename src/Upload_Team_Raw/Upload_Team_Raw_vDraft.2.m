@@ -80,7 +80,8 @@ let
     VisibleFiles =
         if Table.IsEmpty(FilesBuffered)
         then FilesBuffered
-        else Table.SelectRows(FilesBuffered, each [Attributes]?[Hidden]? <> true),
+        else Table.SelectRows(FilesBuffered, each [Attributes]?[Hidden]? <> 
+            true),
 
     WithSourceName =
         if Table.IsEmpty(VisibleFiles)
@@ -95,28 +96,35 @@ let
             let
                 wb      = Excel.Workbook(content, true),
                 // We look for a table named exactly "Upload_Team"
-                hits    = Table.SelectRows(wb, each [Kind] = "Table" and [Name] = "Upload_Team"),
-                result  = if Table.IsEmpty(hits) then #table({}, {}) else hits{0}[Data]
+                hits    = Table.SelectRows(wb, each [Kind] = "Table" and [Name] =
+                     "Upload_Team"),
+                result  = if Table.IsEmpty(hits) then #table({}, {}) else 
+                    hits{0}[Data]
             in
                 result,
 
     AddedTeamTable =
         if Table.IsEmpty(WithSourceName)
         then WithSourceName
-        else Table.AddColumn(WithSourceName, "TeamTable", each GetUploadTeamTable([Content]), type table),
+        else Table.AddColumn(WithSourceName, "TeamTable", each 
+            GetUploadTeamTable([Content]), type table),
 
-    // Keep only rows where Upload_Team existed and had some columns (even if 0 rows)
+    // Keep only rows where Upload_Team existed and had some columns (even if
+    // 0 rows)
+
     NonNullTeamTables =
         if Table.IsEmpty(AddedTeamTable)
         then AddedTeamTable
         else Table.SelectRows(
             AddedTeamTable,
-            each Value.Is([TeamTable], type table) and Table.ColumnCount([TeamTable]) > 0
+            each Value.Is([TeamTable], type table) and 
+                Table.ColumnCount([TeamTable]) > 0
         ),
 
     //=====================================================================
     // 4) EMPTY-FOLDER / NO-TABLE SAFETY NET
-    //    If no files or none contain Upload_Team => return empty canonical schema
+    //    If no files or none contain Upload_Team => return empty canonical 
+    //    schema
     //=====================================================================
     HasAnyDataSource =
         not Table.IsEmpty(NonNullTeamTables),
@@ -140,19 +148,23 @@ let
     Expanded =
         if not HasAnyDataSource
         then OutputIfNone
-        else Table.ExpandTableColumn(NonNullTeamTables, "TeamTable", TeamColNames, TeamColNames),
+        else Table.ExpandTableColumn(NonNullTeamTables, "TeamTable", 
+            TeamColNames, TeamColNames),
 
     //=====================================================================
     // 6) CLEAN / STANDARDIZE (SourceFile)
     //=====================================================================
-    // Keep only Source.Name for provenance; strip file metadata columns if present
+    // Keep only Source.Name for provenance; strip file metadata columns if 
+    // present
+
     StripMeta =
         if not HasAnyDataSource
         then Expanded
         else
             let
                 metaToRemove = List.Intersect({
-                    {"Extension","Date accessed","Date modified","Date created","Folder Path","Attributes","Content"},
+                    {"Extension","Date accessed","Date modified","Date created",
+                        "Folder Path","Attributes","Content"},
                     Table.ColumnNames(Expanded)
                 }),
                 cleaned = Table.RemoveColumns(Expanded, metaToRemove)
@@ -207,7 +219,8 @@ let
             keep = ExpectedColumns,
             cols = Table.ColumnNames(AddMissing),
             extras = List.Difference(cols, keep),
-            trimmed = if List.IsEmpty(extras) then AddMissing else Table.RemoveColumns(AddMissing, extras)
+            trimmed = if List.IsEmpty(extras) then AddMissing else 
+                Table.RemoveColumns(AddMissing, extras)
         in
             trimmed,
 

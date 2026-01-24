@@ -1,7 +1,8 @@
 # REFIT Data Model: Raw → Staging → Analytics
 
-REFIT is built on a **three-layer data model**, common in modern analytics engineering.  
-Each layer has a distinct purpose and strict rules governing its content.
+REFIT is built on a **three-layer data model**, common in modern analytics
+engineering.  Each layer has a distinct purpose and strict rules governing its
+content.
 
 ---
 

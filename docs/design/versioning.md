@@ -1,7 +1,8 @@
 Power Query Versioning via Filename-Based Strategy
 Purpose
 
-This document defines the filename-based versioning strategy used for Power Query (M code) modules in the GL-REFIT project.
+This document defines the filename-based versioning strategy used for Power Query
+(M code) modules in the GL-REFIT project.
 
 The goal is to ensure:
 
@@ -15,7 +16,8 @@ Minimal ambiguity about which version is “active”
 
 Core Principle
 
-Each Power Query module is stored as a single .m file whose filename explicitly includes the version number.
+Each Power Query module is stored as a single .m file whose filename explicitly
+includes the version number.
 
 Example:
 

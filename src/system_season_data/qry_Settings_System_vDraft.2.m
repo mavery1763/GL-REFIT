@@ -14,7 +14,8 @@ let
                 try
                     if v = null or Text.Trim(Text.From(v)) = "" then null
                     else if vt = "number" then Number.From(v)
-                    else if vt = "logical" then Logical.FromText(Text.Upper(Text.From(v)))
+                    else if vt = "logical" then Logical.FromText(Text.Upper
+                        (Text.From(v)))
                     else if vt = "date" then Date.From(v)
                     else Text.From(v)
                 otherwise null,

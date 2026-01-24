@@ -12,13 +12,16 @@ Status: Draft — subject to refinement before first production season
 
 ## 1. Purpose & Design Intent
 
-The Settings_System defines how the REFIT application operates, not how the league plays golf.
+The Settings_System defines how the REFIT application operates, not how the
+league plays golf.
 
 This distinction is intentional:
 
-- **Settings_System** answers:  *“How does REFIT find files, refresh data, enforce behavior, and control automation?”*
+- **Settings_System** answers:  *“How does REFIT find files, refresh data,*
+  *enforce behavior, and control automation?”*
 
-- League rules & **Static_Season_Config** answers:  *“How does the league operate this season?”*
+- League rules & **Static_Season_Config** answers:  *“How does the league*
+  *operate this season?”*
 
 Key design principles:
 * Settings are system-facing, not rules-facing
@@ -47,7 +50,8 @@ Key design principles:
 
 ### 2.2 GetSetting() Function (Retained)
 
-- GetSetting() remains the only supported way for Power Query to retrieve settings
+- GetSetting() remains the only supported way for Power Query to retrieve
+  settings
 
 - Internally, it will now:
     - Query Settings_System

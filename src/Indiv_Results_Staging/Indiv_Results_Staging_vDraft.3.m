@@ -65,8 +65,8 @@ let
             {"Source.Name",      "SourceFile"},
             {"SourceFile",       "SourceFile"},
             {"Date",             "MatchDate"},
-            {"Week",             "MatchWeek"}   // harmless no-op if already correct
-        },
+            {"Week",             "MatchWeek"}   // harmless no-op if already
+        },                                      // correct
 
     Renamed =
         Table.RenameColumns(Source, RenameMap, MissingField.Ignore),
@@ -175,7 +175,8 @@ let
     // 8) SELECT + ORDER FINAL COLUMNS (schema lock)
     // ================================================================
     Selected =
-        Table.SelectColumns(WithMissingAdded, RequiredCols, MissingField.UseNull),
+        Table.SelectColumns(WithMissingAdded, RequiredCols, 
+            MissingField.UseNull),
 
     // ================================================================
     // 9) TYPE COERCION (kept conservative; avoids hard refresh failures)

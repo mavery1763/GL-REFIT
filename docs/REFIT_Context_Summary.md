@@ -30,7 +30,8 @@ Upload_Team_Raw
 
 2. Staging Layer (Canonical Transformations)
 
-Applies naming conventions, type coercion, key creation, and prepares per-match and per-player structures.
+Applies naming conventions, type coercion, key creation, and prepares per-match
+and per-player structures.
 
 Modules:
 
@@ -52,7 +53,8 @@ Indiv_Results_Holes
 
 Power Query Module Responsibilities
 Module	Purpose
-Upload_Indiv_Raw	Ingest individual player data, harmonize schema, soft validation
+Upload_Indiv_Raw	Ingest individual player data, harmonize schema, soft
+validation
 Upload_Team_Raw	Ingest team-level results and match metadata
 Indiv_Results_Staging	Canonical player table, type enforcement, ExclScore logic
 Team_Results_Staging	Canonical team staging table with MatchKey/TeamKey

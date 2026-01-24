@@ -129,9 +129,9 @@ let
             {"LowGross", each List.Min([Gross]),     type number},
             {"LowNet",   each List.Min([Net]),       type number},
 
-            {"TotBirdies",       each List.Sum([BirdiesTotal]),       Int64.Type},
-            {"TotEagles",        each List.Sum([EaglesTotal]),        Int64.Type},
-            {"TotDoubleEagles",  each List.Sum([DoubleEaglesTotal]),  Int64.Type},
+            {"TotBirdies",       each List.Sum([BirdiesTotal]),      Int64.Type},
+            {"TotEagles",        each List.Sum([EaglesTotal]),       Int64.Type},
+            {"TotDoubleEagles",  each List.Sum([DoubleEaglesTotal]), Int64.Type},
 
             {"AsOfMatchWeek", each List.Max([MatchWeek]), Int64.Type},
             {"AsOfMatchDate", each List.Max([MatchDate]), type date}

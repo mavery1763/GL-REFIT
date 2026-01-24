@@ -85,7 +85,8 @@ The canonical Upload_Ind schema is defined below.
 
 | **Column** | **Type** | **Description** |
 |----|----|----|
-| **SourceFile** | Text | Filled automatically by Power Query. Match Report leaves this blank. |
+| **SourceFile** | Text | Filled automatically by Power Query. Match Report
+leaves this blank. |
 | **Year** | Number | League year. |
 | **Week** | Number | League week number. |
 | **Date** | Date | Match date. |

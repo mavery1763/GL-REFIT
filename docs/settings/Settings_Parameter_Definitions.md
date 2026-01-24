@@ -1,7 +1,8 @@
 # Settings Parameter Definitions
 
-This document describes every named range in the Settings sheet used by the REFIT system.  
-Each parameter includes: purpose, data type, expected format, and Power Query usage.
+This document describes every named range in the Settings sheet used by the REFIT
+system.  Each parameter includes: purpose, data type, expected format, and Power
+Query usage.
 
 ---
 
@@ -170,5 +171,6 @@ Parameters are grouped by Settings block.
 
 - Additional parameters may be added over time.
 - This file is the authoritative reference for PQ developers.
-- Any parameter change that affects scoring must be recorded in `/docs/Version_History.md`.
+- Any parameter change that affects scoring must be recorded in
+  `/docs/Version_History.md`.
 

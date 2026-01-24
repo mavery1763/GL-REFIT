@@ -99,7 +99,8 @@ Captains may enter front/back data:
 Score_F1 ... Score_F9
 Score_B1 ... Score_B9
 
-The **match report output tables must map these** to full 18-hole long-form arrays.
+The **match report output tables must map these** to full 18-hole long-form
+arrays.
 
 ### **4.2 PQ Never Performs Front/Back Mapping**
 Mapping MUST happen **before** ingestion into Raw.
@@ -137,4 +138,5 @@ This expansion requires:
 
 ---
 
-The long-form system ensures the entire REFIT platform has a consistent and future-proof representation of per-hole scoring.
+The long-form system ensures the entire REFIT platform has a consistent and
+future-proof representation of per-hole scoring.

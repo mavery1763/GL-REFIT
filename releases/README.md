@@ -1,5 +1,6 @@
 # /releases
-This folder holds packaged releases of the REFIT system for distribution to league secretaries.
+This folder holds packaged releases of the REFIT system for distribution to
+league secretaries.
 
 Each release contains:
 - REFIT Master Workbook

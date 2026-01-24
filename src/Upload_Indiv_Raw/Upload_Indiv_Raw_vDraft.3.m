@@ -170,7 +170,8 @@ let
     //
     // This avoids Transform File artifacts.
     // ============================================================
-    GetUploadIndFromFile = (fileContent as binary, sourceName as text) as table =>
+    GetUploadIndFromFile = (fileContent as binary, sourceName as text) as 
+        table =>
         let
             wb = try Excel.Workbook(fileContent, true) otherwise null,
 
@@ -179,7 +180,8 @@ let
                 if wb = null then #table({}, {})
                 else
                     let
-                        matchRows = Table.SelectRows(wb, each ([Kind] = "Table" and [Item] = "Upload_Ind")),
+                        matchRows = Table.SelectRows(wb, each ([Kind] = "Table" 
+                            and [Item] = "Upload_Ind")),
                         t =
                             if Table.RowCount(matchRows) > 0
                             then matchRows{0}[Data]
@@ -191,13 +193,17 @@ let
             withSource =
                 if Table.ColumnCount(tbl) = 0
                 then tbl
-                else Table.AddColumn(tbl, "SourceFile", each sourceName, type text),
+                else Table.AddColumn(tbl, "SourceFile", each sourceName, 
+                    type text),
 
             // Ensure SourceFile is first (nice-to-have)
             reordered =
-                if Table.ColumnCount(withSource) = 0 or not List.Contains(Table.ColumnNames(withSource), "SourceFile")
+                if Table.ColumnCount(withSource) = 0 or not 
+                    List.Contains(Table.ColumnNames(withSource), "SourceFile")
                 then withSource
-                else Table.ReorderColumns(withSource, {"SourceFile"} & List.RemoveItems(Table.ColumnNames(withSource), {"SourceFile"}))
+                else Table.ReorderColumns(withSource, {"SourceFile"} & 
+                    List.RemoveItems(Table.ColumnNames(withSource), 
+                    {"SourceFile"}))
         in
             reordered,
 

@@ -42,8 +42,8 @@ let
             {"Source.Name",      "SourceFile"},
             {"SourceFile",       "SourceFile"},
             {"Date",             "MatchDate"},
-            {"Week",             "MatchWeek"}   // harmless no-op if already correct
-        },
+            {"Week",             "MatchWeek"}   // harmless no-op if already
+        },                                      // correct
 
     Renamed =
         Table.RenameColumns(Source, RenameMap, MissingField.Ignore),

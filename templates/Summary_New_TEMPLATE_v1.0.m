@@ -43,7 +43,8 @@ let
         in
             if Table.RowCount(rows) = 1
             then rows{0}[SettingValue]
-            else error "Expected exactly one SeasonYear row in Static_Season_Config",
+            else error "Expected exactly one SeasonYear row in 
+                Static_Season_Config",
 
     // ================================================================
     // 2) EARLY EMPTY SHORT-CIRCUIT

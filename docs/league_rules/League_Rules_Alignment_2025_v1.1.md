@@ -23,7 +23,8 @@ Explicitly document how REFIT interprets, implements, and safeguards league rule
 
 Provide a durable reference for future secretaries, officers, and developers
 
-This document governs REFIT behavior. If conflicts arise, this document is the interpretive authority unless superseded by a captain-approved rule change.
+This document governs REFIT behavior. If conflicts arise, this document is the
+interpretive authority unless superseded by a captain-approved rule change.
 
 Section 1 – Blind Draw, Maximum Scores & Hole Completion
 

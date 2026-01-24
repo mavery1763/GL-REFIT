@@ -1,6 +1,6 @@
 let
     /*
-    ===============================================================================
+    ============================================================================
     Query:      Summary_New__Teams
     Version:    vDraft.4
     Purpose:    
@@ -8,16 +8,17 @@ let
     Created:    2026-01-08
     Source:     Team_Results_Staging, Static_Season_Config, Team_Master
     Layer:      Summary_New
-    -------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------
     Design Principles:
     - Source(s) Team_Results_Staging, Static_Season_Config, Team_Master
     - No file system access
     - No business rule inference
     - Schema must be stable even when no data exists
-    - Team points per match currently hardcoded; need to add to Static_Season_Config
+    - Team points per match currently hardcoded; need to add to
+      Static_Season_Config
     - Team_Master currently does not exist
     - CurrentlyInPlayoffs does not include rule-specified tie breakers yet
-    ===============================================================================
+    ============================================================================
     */
     // ============================================================
     // SECTION 0 — SEASON CONTEXT (Static_Season_Config)
@@ -168,7 +169,8 @@ let
             Table.FirstN(SortLatest, 4),
 
         Top4WithFlag =
-            Table.AddColumn(Top4, "CurrentlyInPlayoffs", each true, type logical),
+            Table.AddColumn(Top4, "CurrentlyInPlayoffs", each true, 
+                type logical),
 
         RestWithFlag =
             Table.AddColumn(

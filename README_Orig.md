@@ -71,7 +71,8 @@ Each `.m` file includes:
 - Module description  
 - Change log  
 
-Documentation lives in `/docs`, including the authoritative **Match Report Output Specification v1.2**.
+Documentation lives in `/docs`, including the authoritative **Match Report**
+**Output Specification v1.2**.
 
 ---
 

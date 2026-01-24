@@ -1,6 +1,8 @@
 # Power Query Architecture
 
-REFIT uses a modular, settings-driven Power Query architecture designed for clarity and maintainability. Each module has a singular responsibility and produces tables with well-defined schemas.
+REFIT uses a modular, settings-driven Power Query architecture designed for
+clarity and maintainability. Each module has a singular responsibility and
+produces tables with well-defined schemas.
 
 ---
 
@@ -10,7 +12,8 @@ REFIT uses a modular, settings-driven Power Query architecture designed for clar
 All file/folder locations are read through the `GetSetting()` function.
 
 ### **2. Settings-driven logic**
-Every rule controlling scoring, handicaps, or workflow is configured in the Settings sheet.
+Every rule controlling scoring, handicaps, or workflow is configured in the
+Settings sheet.
 
 ### **3. Strict module boundaries**
 Each module performs one job:
@@ -78,4 +81,5 @@ This guarantees consistent use of parameters across every module.
 
 ---
 
-The Power Query architecture is the operational engine of REFIT, enabling stable, automated scoring with transparent logic.
+The Power Query architecture is the operational engine of REFIT, enabling stable,
+automated scoring with transparent logic.

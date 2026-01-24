@@ -12,14 +12,16 @@
 This document defines the **clear separation of responsibilities** between:
 
 - The **Match Report workbook** (captain-facing, data entry & validation)
-- The **Master workbook** (secretary-facing, authoritative calculation & aggregation)
+- The **Master workbook** (secretary-facing, authoritative calculation &
+  aggregation)
 
 Its goals are to:
 
 - Preserve captain usability and trust
 - Centralize authority and consistency
 - Avoid duplicate or conflicting logic
-- Explicitly document **what is preserved, what is authoritative, and what is non-enforced**
+- Explicitly document **what is preserved, what is authoritative, and what is**
+  **non-enforced**
 
 This document is normative for REFIT design and implementation.
 
@@ -195,7 +197,8 @@ When corrections occur:
 5. Corrected report replaces the original input
 6. REFIT recalculates all downstream results
 
-> REFIT does **not** distinguish corrections algorithmically — it simply recalculates.
+> REFIT does **not** distinguish corrections algorithmically — it simply
+> recalculates.
 
 ---
 

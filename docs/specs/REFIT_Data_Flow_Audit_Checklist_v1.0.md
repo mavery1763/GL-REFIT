@@ -9,9 +9,11 @@ and contract-complete before Engine work begins.
 ## A. Settings & Configuration (CRITICAL)
 
 ### A-1. Settings Architecture Finalization
-- [ ] Final decision documented: which values live in `Settings` vs `Static_Season_Config`
+- [ ] Final decision documented: which values live in `Settings` vs 
+  `Static_Season_Config`
 - [ ] `Static_Season_Config` contents fully populated (no TBD placeholders)
-- [ ] All Summary_New queries source season constants **only** from `Static_Season_Config`
+- [ ] All Summary_New queries source season constants **only** from
+  `Static_Season_Config`
 - [ ] No hard-coded season values exist anywhere in Power Query
 
 ### A-2. Static_Season_Config Implementation

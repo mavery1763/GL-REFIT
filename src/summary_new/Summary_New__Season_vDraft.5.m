@@ -45,9 +45,11 @@ let
         if ActiveSeasonCount = 1 then
             ActiveSeasonRows{0}[SeasonKey]
         else if ActiveSeasonCount = 0 then
-            error "No Active season found in Static_Season_Config (SeasonStatus=Active)."
+            error "No Active season found in Static_Season_Config (SeasonStatus=
+                Active)."
         else
-            error "Multiple Active seasons found in Static_Season_Config. Expected exactly 1.",
+            error "Multiple Active seasons found in Static_Season_Config. 
+                Expected exactly 1.",
 
     SeasonRows =
         Table.SelectRows(
@@ -69,9 +71,12 @@ let
                 if n = 1 then
                     rows{0}[SettingValue]
                 else if n = 0 then
-                    error "Missing required season setting '" & key & "' for SeasonKey=" & Text.From(CurrentSeasonKey) & "."
+                    error "Missing required season setting '" & key & "' for 
+                        SeasonKey=" & Text.From(CurrentSeasonKey) & "."
                 else
-                    error "Non-scalar season setting '" & key & "' for SeasonKey=" & Text.From(CurrentSeasonKey) & " (found " & Text.From(n) & " rows).",
+                    error "Non-scalar season setting '" & key & "' for 
+                        SeasonKey=" & Text.From(CurrentSeasonKey) & " (found " & 
+                        Text.From(n) & " rows).",
 
     // ============================================================
     // SECTION 1 — REQUIRED SCALARS FOR SUMMARY

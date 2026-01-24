@@ -20,4 +20,5 @@ This directory contains all reference materials for the GL-REFIT project.
 - Release notes
 - Onboarding guides for future technical maintainers
 
-Use this folder to track all decisions and specifications that define the REFIT system.
+Use this folder to track all decisions and specifications that define the REFIT
+system.

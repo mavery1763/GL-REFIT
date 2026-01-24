@@ -36,15 +36,17 @@ not as a database table.
 
 ## Validation Rules
 - SeasonKey must exist in <season dimension/source>
-- At any point in time, exactly one season must be marked as SeasonStatus = Active
-  in Static_Season_Config.  *REFIT will throw an error* if zero or multiple Active
-  seasons are detected. This is a deliberate design choice to ensure deterministic 
-  Summary outputs.
-- SettingKey must be in the governed Settings key list (see Settings_System_Schema)
+- At any point in time, exactly one season must be marked as SeasonStatus =
+  Active
+  in Static_Season_Config.  *REFIT will throw an error* if zero or multiple
+  Active seasons are detected. This is a deliberate design choice to ensure
+  deterministic Summary outputs.
+- SettingKey must be in the governed Settings key list (see
+  Settings_System_Schema)
 - Duplicate SettingKey values within a SeasonKey are permitted when:
     the setting is defined as multi-valued in Settings_System, or
-    the values represent enumerations, scoped variants (e.g., Side), or structured
-    facts (e.g., CoursePar by side).
+    the values represent enumerations, scoped variants (e.g., Side), or
+    structured     facts (e.g., CoursePar by side).
 - ValueType must be one of: text|number|date|logical|array
 - ValueType array must be a sequence of numbers separated by commas (no spaces)
 - Course- and side-specific arrays are expected to migrate to a generalized

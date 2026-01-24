@@ -1,9 +1,12 @@
 # Settings Governance
 
 The REFIT scoring system is entirely *settings-driven*.  
-All business rules, file paths, scoring parameters, and course metadata are stored in the **Settings sheet** and accessed via the global Power Query function `GetSetting()`.
+All business rules, file paths, scoring parameters, and course metadata are
+stored in the **Settings sheet** and accessed via the global Power Query function
+`GetSetting()`.
 
-This document establishes the policies and rules governing how Settings are maintained, updated, and extended.
+This document establishes the policies and rules governing how Settings are
+maintained, updated, and extended.
 
 ---
 
@@ -130,7 +133,8 @@ No module should ever reference:
 - Hard-coded arrays  
 - Static assumptions about course properties  
 
-Any new functionality requiring configuration must add a named range and update documentation.
+Any new functionality requiring configuration must add a named range and update
+documentation.
 
 ---
 

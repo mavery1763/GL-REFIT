@@ -1,6 +1,8 @@
 # Module Overview
 
-REFIT’s Power Query system is organized into modular units, each responsible for a specific stage of the scoring workflow. This document summarizes the role and output of each module.
+REFIT’s Power Query system is organized into modular units, each responsible for
+a specific stage of the scoring workflow. This document summarizes the role and
+output of each module.
 
 ---
 
