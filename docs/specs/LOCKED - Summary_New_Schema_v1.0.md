@@ -1,7 +1,9 @@
 # Summary_New — Canonical Schema
 
 **Version:** v1.0  
-**Status:** 🔒 LOCKED  
+**Status:** 🔒 LOCKED
+**Last Updated:** 
+**Tag:** TBD
 **Layer:** Summary_New  
 **Scope:** Regular season only (playoffs explicitly out of scope)
 

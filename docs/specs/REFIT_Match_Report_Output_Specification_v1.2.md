@@ -1,6 +1,10 @@
 **REFIT MATCH REPORT OUTPUT SPECIFICATION**
 
-**Version 1.2 — Clean Integrated Draft**  
+**Version:** v1.2 - Clean Integrated Draft
+**Status:** LOCKED
+**Last updated:** 2026-01-01
+**Tag:** TBD
+
 **Purpose:** Define the required outputs of the Captain’s Match Report
 template for reliable integration with the REFIT Raw → Staging →
 Analytics data pipeline.

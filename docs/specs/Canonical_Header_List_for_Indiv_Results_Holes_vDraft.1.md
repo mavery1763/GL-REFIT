@@ -1,3 +1,11 @@
+# Canonical Header List for Indiv_Results_Holes
+
+**Version:** vDraft.1
+**Status:** LOCKED
+**Last updated:** 2026-01-01
+**Tag:** TBD
+
+---
 SourceFile
 MatchWeek
 MatchDate

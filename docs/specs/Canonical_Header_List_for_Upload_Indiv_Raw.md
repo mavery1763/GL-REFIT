@@ -1,3 +1,12 @@
+# Canonical Header List for Upload_Indiv_Raw
+
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 
+**Tag:** TBD
+
+---
+
 SourceFile
 Week
 Date

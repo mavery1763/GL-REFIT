@@ -1,6 +1,14 @@
 # Match Report Schema Alignment Specification
 
-This document ensures that match report output tables (maintained separately) align with the schemas required by the REFIT Raw modules.
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 
+**Tag:** TBD
+
+---
+
+This document ensures that match report output tables (maintained separately)
+align with the schemas required by the REFIT Raw modules.
 
 ---
 
@@ -58,4 +66,5 @@ Match report schemas should not change without:
 
 ---
 
-This specification guarantees alignment between the captain-facing Match Report and the PQ ingestion layer.
+This specification guarantees alignment between the captain-facing Match Report
+and the PQ ingestion layer.

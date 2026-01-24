@@ -1,3 +1,12 @@
+# Canonical Header List for Indiv_Results_Staging
+
+**Version:** vDraft.2
+**Status:** LOCKED
+**Last updated:** 2026-01-01
+**Tag:** TBD
+
+---
+
 SourceFile
 SeasonYear
 MatchWeek

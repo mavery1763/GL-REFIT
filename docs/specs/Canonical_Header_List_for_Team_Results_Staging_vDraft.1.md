@@ -1,3 +1,12 @@
+# Canonical Header List for Team_Results_Staging
+
+**Version:** vDraft.1
+**Status:** LOCKED
+**Last updated:** 2026-01-01
+**Tag:** TBD
+
+---
+
 SourceFile
 SeasonYear
 Year

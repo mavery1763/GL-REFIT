@@ -1,7 +1,15 @@
 # Data Column Naming Standards
 
-This document defines the official naming conventions for all columns used throughout the REFIT system.  
-These rules ensure consistency across Power Query modules, match reports, analytics layers, and any future extensions.
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 
+**Tag:** TBD
+
+---
+
+This document defines the official naming conventions for all columns used
+throughout the REFIT system.  These rules ensure consistency across Power Query
+modules, match reports, analytics layers, and any future extensions.
 
 ---
 
@@ -134,4 +142,5 @@ Match Report output tables MUST:
 
 ---
 
-This standard is authoritative for all REFIT development and should be updated only through versioned changes.
+This standard is authoritative for all REFIT development and should be updated
+only through versioned changes.

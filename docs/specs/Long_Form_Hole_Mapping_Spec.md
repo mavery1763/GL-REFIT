@@ -1,7 +1,15 @@
 # Long-Form Hole Mapping Specification
 
-This specification defines how REFIT represents per-hole scoring, par, handicap, and derived metrics.  
-All Power Query modules depend on this convention for correct expansion and analytics.
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 
+**Tag:** TBD
+
+---
+
+This specification defines how REFIT represents per-hole scoring, par, handicap,
+and derived metrics.  All Power Query modules depend on this convention for
+correct expansion and analytics.
 
 ---
 

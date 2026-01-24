@@ -1,5 +1,10 @@
 # Settings_System_Schema_vDraft.1.md
 
+**Version:** vDraft.1
+**Status:** LOCKED
+**Last updated:** 
+**Tag:** TBD
+
 Scope: System-level configuration for REFIT  
 Audience: Future league secretaries, developers, and maintainers  
 Excludes: League rules, course rules, blind draw definitions, season structure  
