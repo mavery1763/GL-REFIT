@@ -1,9 +1,13 @@
 League Rules Alignment with REFIT
 
-Version 1.1
-League Rules Year: 2025
-Alignment Version: v1.1
-Status: Final – Approved
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+**League Rules Year:** 2025
+
+---
 
 Purpose
 
@@ -367,3 +371,8 @@ Prior versions archived in /docs/league_rules/archive/
 11.5 Final Authority
 
 This document defines REFIT behavior.
+
+## Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.
