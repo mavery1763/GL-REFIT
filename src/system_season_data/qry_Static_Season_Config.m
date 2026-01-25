@@ -1,7 +1,11 @@
 /*
 ===============================================================================
- Query:      qry_Static_Season_Config
- Version:    vDraft.3
+ Query:        qry_Static_Season_Config
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
  Purpose:    Primary means of loading Static Season Configuration data into other
              GL-REFIT queries and engines.
  Author:     Mike Avery
@@ -75,6 +79,9 @@ in
 
 /* Version History
 
+    v1.0 - 2026-01-24
+        - LOCKED version after pre-engine audit.
+    
     vDraft.3 - 2026-01-08
         - Added header comment block.    
     

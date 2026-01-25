@@ -1,5 +1,12 @@
 # Settings Governance
 
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+---
+
 The REFIT scoring system is entirely *settings-driven*.  
 All business rules, file paths, scoring parameters, and course metadata are
 stored in the **Settings sheet** and accessed via the global Power Query function
@@ -193,3 +200,8 @@ Settings governance exists so future secretaries can:
 - Keep the system functioning without technical expertise  
 
 This document must remain up to date as the system evolves.
+
+## Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

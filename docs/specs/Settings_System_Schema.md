@@ -1,9 +1,9 @@
 # Settings_System_Schema_vDraft.1.md
 
-**Version:** vDraft.1
+**Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 Scope: System-level configuration for REFIT  
 Audience: Future league secretaries, developers, and maintainers  
@@ -156,3 +156,8 @@ Promoted to v1.0 only when:
 3. Create Static_Season_Config_Schema_vDraft.1
 4. Refactor GetSetting() to read from Settings_System
 5. Migrate existing parameters
+
+# Version History
+
+    v1.0 - 2026-01-24
+    - Promoted following successful pass of v1.0 Pre-engine audit.

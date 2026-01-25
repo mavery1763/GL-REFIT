@@ -1,7 +1,11 @@
 /*
 ===============================================================================
- Query:      Team_Results_Staging
- Version:    vDraft.2
+ Query:        Team_Results_Staging
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
  Purpose:    Canonical staging table for team-level match results.
  Author:     REFIT Project
  Created:    2026-01-04
@@ -157,6 +161,9 @@ in
 
 /* Version History
 
+    v1.0  2026-01-24
+    - LOCKED version after pre-engine audit.
+    
     vDraft.2 2026-01-04
     - Replaced direct call to Static_Season_Config table with call to 
       qry_Static_Season_Config query to pull in SeasonYear.
@@ -164,7 +171,4 @@ in
     vDraft.1 2025-12-30
     - Added code block to populate SeasonYear from Static_Season_Config table
     
-    v1.0  2025-12-
-    - Original version
-
 */

@@ -1,7 +1,11 @@
 /*
 ===============================================================================
  Query:      Summary_New__<Name>
- Version:    v1.0
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
  Purpose:    <One-line description of what this summary represents>
  Layer:      Summary_New
 -------------------------------------------------------------------------------
@@ -79,6 +83,6 @@ in
     Final
 /* Version History
     
-    v1.0 - 2026-01-06
-        - Original versioned template creation.
+    v1.0 - 2026-01-24
+        - Promoted following successful pass of v1.0 Pre-engine audit.
 */

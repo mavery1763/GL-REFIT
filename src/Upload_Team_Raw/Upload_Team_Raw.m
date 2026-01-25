@@ -1,24 +1,30 @@
+/*
+===============================================================================
+ Query:        Upload_Team_Raw
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
+Purpose:
+- Ingest the Upload_Team table from weekly Match Report workbooks
+- Enforce a stable output schema (ExpectedColumns)
+- Be safe when the target folder is empty (return 0-row table, no errors)
+- No Transform File artifacts; robust to missing/extra columns
+
+Dependencies:
+  -
+
+Output:
+- Table with columns exactly matching ExpectedColumns (order enforced)
+- One row per team per match report (as produced by Upload_Team table)
+===============================================================================
+*/
 let
-    /***********************************************************************
-      Upload_Team_Raw — vDraft.2
-      Purpose:
-        - Ingest the Upload_Team table from weekly Match Report workbooks
-        - Enforce a stable output schema (ExpectedColumns)
-        - Be safe when the target folder is empty (return 0-row table, no errors)
-        - No Transform File artifacts; robust to missing/extra columns
-
-      Dependencies:
-        - 
-
-      Output:
-        - Table with columns exactly matching ExpectedColumns (order enforced)
-        - One row per team per match report (as produced by Upload_Team table)
-    ***********************************************************************/
-
     //=====================================================================
     // 0) SETTINGS
     //=====================================================================
-    
+
     SystemSettings =
             qry_Settings_System,
 
@@ -232,6 +238,9 @@ in
 
 /* Version History
 
+    v1.0 - 2026-01-24
+        - Initial version, based on Upload_Team_Raw_vDraft.1
+    
     vDraft.2 - 2026-01-05
         - Replaced the GetSetting hepler function with qry_Systems_Settings
           to retrieve path and folder data from System_Settings.

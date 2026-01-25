@@ -1,18 +1,21 @@
 /*
-Query: Upload_Indiv_Raw
-Version: vDraft.3
-Status: Active
-Last Updated: 2026-01-05
-
+===============================================================================
+ Query:        Upload_Indiv_Raw
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
 Description:
-Canonical Raw ingestion query for individual match results.
-Conforms to League_Rules_Alignment_2025_v1.1 and REFIT data model.
+- Canonical Raw ingestion query for individual match results.
+- Conforms to League_Rules_Alignment_2025_v1.1 and REFIT data model.
 
 Notes:
 - Empty-folder safe
 - Schema-stable
 - No Transform File dependency
 - Includes temp Rename section to align legacy column names with REFIT model
+===============================================================================
 */
 
 let
@@ -306,6 +309,9 @@ in
 
 /* Version History
 
+    V1.0 - 2026-01-24
+        - Finalized after engine audit.
+    
     vDraft.3 - 2026-01-05
         - Replaced the GetSetting hepler function with qry_Systems_Settings
           to retrieve path and folder data from System_Settings.

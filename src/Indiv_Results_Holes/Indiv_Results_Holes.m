@@ -1,11 +1,11 @@
 /*
 ===============================================================================
  Query:        Indiv_Results_Holes
- Version:      vDraft.2
- Status:       
- Author:       Mike Avery
- Last Updated: 2026-01-04
-
+ Version:      v1.0
+ Status:       LOCKED
+ Last updated: 2026-01-24
+ Tag:          v1.0-pre-engine-audit
+-------------------------------------------------------------------------------
  Purpose:
    Explodes player-round records into a normalized hole-level fact table
    (one row per player per hole), supporting advanced analytics:
@@ -236,6 +236,9 @@ in
 /* 
 Version History
 
+V1.0  2026-01-24
+- Finalized after engine audit.
+
 vDraft.2 2026-01-04
 - Replaced direct call to Static_Season_Config table with call to 
     qry_Static_Season_Config query to pull in SeasonYear.
@@ -244,8 +247,5 @@ vDraft.1 2026-01-01
 - Removed base type coercion for ID fields at the beginning and added type
     coercion in TypedFinal.  Added columns for, and derived, SeasonYear, 
     PlayerKey, TeamKey and MatchKey.
-
-v1.0  2025-12-
-- Original version
 
 */

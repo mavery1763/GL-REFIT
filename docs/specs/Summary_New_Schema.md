@@ -2,8 +2,8 @@
 
 **Version:** v1.0  
 **Status:** 🔒 LOCKED
-**Last Updated:** 
-**Tag:** TBD
+**Last Updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 **Layer:** Summary_New  
 **Scope:** Regular season only (playoffs explicitly out of scope)
 
@@ -291,10 +291,16 @@ Weekly results for reporting and audits.
 
 ## Change Control
 
-This schema is locked as of **2025-12-21**.
+This schema is locked as of **2026-01-24**.
 
 Any changes require:
 
 - Explicit agreement
 - Version increment
 - Documented rationale
+
+## Version History
+
+    v1.0 - 2026-01-24
+    - Promoted following successful pass of v1.0 Pre-engine audit.
+

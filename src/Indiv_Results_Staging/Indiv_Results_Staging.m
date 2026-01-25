@@ -1,6 +1,11 @@
-let
-    /**********************************************************************
-      Indiv_Results_Staging_vDraft.3.m
+    /*
+      ***********************************************************************
+      Query:        Indiv_Results_Staging
+      Version:      v1.0
+      Status:       LOCKED
+      Last updated: 2026-01-24
+      Tag:          v1.0-pre-engine-audit
+      -----------------------------------------------------------------------
       Purpose: Canonical player-round staging table (17 columns) sourced
                from Upload_Indiv_Raw. Applies minimal standardization:
                - selects/creates required fields
@@ -15,8 +20,9 @@ let
         SourceFile, SeasonYear, MatchWeek, MatchDate, Side, Team, Opponent,
         Position, Player, Gross, Hdcp, Net, BirdiesTotal, EaglesTotal,
         DoubleEaglesTotal, NetPoints, PointsTotal, ExclScore
-    **********************************************************************/
-
+      **********************************************************************
+    */
+let
     // ================================================================
     // 1) SOURCE
     // ================================================================
@@ -215,6 +221,9 @@ in
 
 /*  
     Version History
+    
+    v1.0  2026-01-24
+    - Locked version post engine audit.
     
     vDraft.3 2026-01-04
     - Replaced direct call to Static_Season_Config table with call to 

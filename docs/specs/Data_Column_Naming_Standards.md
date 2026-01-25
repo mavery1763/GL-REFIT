@@ -2,8 +2,8 @@
 
 **Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 
@@ -144,3 +144,10 @@ Match Report output tables MUST:
 
 This standard is authoritative for all REFIT development and should be updated
 only through versioned changes.
+
+## Version History
+
+    v1.0 - 2026-01-24
+    - Promoted following successful pass of v1.0 Pre-engine audit.
+
+

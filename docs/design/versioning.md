@@ -1,4 +1,10 @@
 Power Query Versioning via Filename-Based Strategy
+
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
 Purpose
 
 This document defines the filename-based versioning strategy used for Power Query
@@ -89,3 +95,8 @@ Limitation	Mitigation
 Many versions in archive	Acceptable — archive is intentionally verbose
 Less compact than folder-based	Clarity favored over compression
 Manual move required	Covered by checklist (see Doc 3)
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

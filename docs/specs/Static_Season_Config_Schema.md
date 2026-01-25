@@ -1,9 +1,9 @@
 # Static_Season_Config — Schema
   
-**Version:** vDraft.3
+**Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 2026-01-23
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ## Purpose
 Defines season-scoped configuration values used by qry_Static_Season_Config and
@@ -66,6 +66,9 @@ not as a database table.
   SeasonStatus="Active" at a time.
 
 ## Versioning
+- v1.0 2026-01-24
+    Promoted following successful pass of v1.0 Pre-engine audit.
+  
 - vDraft.3 2026-01-23
     Added section clarifying SeasonKey vs SeasonYear
 

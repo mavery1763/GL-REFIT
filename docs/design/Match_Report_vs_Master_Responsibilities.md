@@ -1,9 +1,10 @@
 # Match Report vs Master Responsibilities
 **GL-REFIT Design Alignment Document**
 
-**Version:** v1.0 (Design-locked, pre-implementation)  
-**Status:** Approved  
-**Last Updated:** 2025-12-XX  
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 
@@ -245,3 +246,8 @@ This document is **design-locked** and authoritative for REFIT implementation.
 Any deviation requires explicit revision of this document.
 
 ---
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

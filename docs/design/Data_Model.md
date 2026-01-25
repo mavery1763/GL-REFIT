@@ -1,5 +1,12 @@
 # REFIT Data Model: Raw → Staging → Analytics
 
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+---
+
 REFIT is built on a **three-layer data model**, common in modern analytics
 engineering.  Each layer has a distinct purpose and strict rules governing its
 content.
@@ -91,3 +98,8 @@ The Analytics layer transforms each round into **18 hole records**.
 ---
 
 This data model ensures clarity, maintainability, and long-term analytical value.
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

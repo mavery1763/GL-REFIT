@@ -2,8 +2,8 @@
 
 **Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 
@@ -140,3 +140,9 @@ This expansion requires:
 
 The long-form system ensures the entire REFIT platform has a consistent and
 future-proof representation of per-hole scoring.
+
+# Version History
+
+    v1.0 - 2026-01-24
+    - Promoted following successful pass of v1.0 Pre-engine audit.
+

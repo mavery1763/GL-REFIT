@@ -1,5 +1,12 @@
 # Power Query Architecture
 
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+---
+
 REFIT uses a modular, settings-driven Power Query architecture designed for
 clarity and maintainability. Each module has a singular responsibility and
 produces tables with well-defined schemas.
@@ -83,3 +90,8 @@ This guarantees consistent use of parameters across every module.
 
 The Power Query architecture is the operational engine of REFIT, enabling stable,
 automated scoring with transparent logic.
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

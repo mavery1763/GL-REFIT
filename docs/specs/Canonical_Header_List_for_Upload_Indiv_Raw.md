@@ -2,8 +2,8 @@
 
 **Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 
@@ -168,3 +168,8 @@ Points_15
 Points_16
 Points_17
 Points_18
+
+## Version History
+
+    v1.0 - 2026-01-24
+    - Promoted following successful pass of v1.0 Pre-engine audit.

@@ -1,5 +1,12 @@
 # Settings Parameter Definitions
 
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+---
+
 This document describes every named range in the Settings sheet used by the REFIT
 system.  Each parameter includes: purpose, data type, expected format, and Power
 Query usage.
@@ -174,3 +181,7 @@ Parameters are grouped by Settings block.
 - Any parameter change that affects scoring must be recorded in
   `/docs/Version_History.md`.
 
+## Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

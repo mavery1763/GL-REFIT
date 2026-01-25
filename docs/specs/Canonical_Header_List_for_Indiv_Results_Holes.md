@@ -1,9 +1,9 @@
 # Canonical Header List for Indiv_Results_Holes
 
-**Version:** vDraft.1
+**Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 2026-01-01
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 SourceFile
@@ -26,13 +26,11 @@ Eagle
 DoubleEagle
 Points
 
-Version History
----------------
-Version vDraft.1
-2026-01-01
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.
+
+vDraft.1 - 2026-01-01
 - Changed Week to MatchWeek and Date to MatchDate
 - Added IndivMatchKey and PlayerKey
-
-Version v1.0
-2025-12-
-Original

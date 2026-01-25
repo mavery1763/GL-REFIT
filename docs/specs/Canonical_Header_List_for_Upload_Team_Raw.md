@@ -2,8 +2,8 @@
 
 **Version:** v1.0
 **Status:** LOCKED
-**Last updated:** 
-**Tag:** TBD
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
 
 ---
 
@@ -19,3 +19,8 @@ TmNetPoints
 TmTotPoints
 MatchCompleted
 ForfeitFlag
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

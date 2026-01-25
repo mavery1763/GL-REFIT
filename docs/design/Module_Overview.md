@@ -1,5 +1,12 @@
 # Module Overview
 
+**Version:** v1.0
+**Status:** LOCKED
+**Last updated:** 2026-01-24
+**Tag:** v1.0-pre-engine-audit
+
+---
+
 REFIT’s Power Query system is organized into modular units, each responsible for
 a specific stage of the scoring workflow. This document summarizes the role and
 output of each module.
@@ -66,3 +73,8 @@ output of each module.
 ---
 
 These modules form the operational heart of the REFIT scoring system.
+
+# Version History
+
+v1.0 - 2026-01-24
+- Promoted following successful pass of v1.0 Pre-engine audit.

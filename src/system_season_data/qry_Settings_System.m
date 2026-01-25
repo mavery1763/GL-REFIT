@@ -1,4 +1,16 @@
-let
+/*
+======================================================================
+
+Query:        qry_Settings_System
+
+Version:      v1.0
+Status:       LOCKED
+Last updated: 2026-01-24
+Tag:          v1.0-pre-engine-audit
+
+======================================================================
+
+*/let
     Source =
         Excel.CurrentWorkbook(){[Name="Settings_System"]}[Content],
 
@@ -55,6 +67,9 @@ in
 
 /* Version History
 
+    v1.0 - 2026-01-24
+        - LOCKED version after pre-engine audit.
+    
     vDraft.2 - 2026-01-04
         - Changed to Table.AddColumn with defensive typing block.
     
