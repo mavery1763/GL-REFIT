@@ -19,7 +19,7 @@
 /*
 ===============================================================================
  Query:      Summary_New__Team_stats
- Status:     DRAFT (Schema stub) ELIMINATED in vDraft.1 of schema
+ Status:     DRAFT (Schema stub) ELIMINATED in vDraft.1 of schema; not required.
  Purpose:    
  Layer:      Summary_New
 -------------------------------------------------------------------------------
