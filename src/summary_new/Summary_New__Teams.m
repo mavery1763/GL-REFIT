@@ -103,7 +103,7 @@ let
     */
         CurrentTeamsData = 
             Table.SelectRows(SelectCols,
-                each [SeasonYear] = SeasonYearValue),
+                each [SeasonYear] = SeasonYear_Value),
     /*
     ***************************************************************************
         Add columns and calculate win, tie or loss for each team match
